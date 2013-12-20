@@ -1,0 +1,533 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		434646A418592056001F9193 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434646A318592056001F9193 /* ExternalAccessory.framework */; };
+		43AADC79183EBB2800D5D725 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADC78183EBB2800D5D725 /* Foundation.framework */; };
+		43AADC7B183EBB2800D5D725 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADC7A183EBB2800D5D725 /* CoreGraphics.framework */; };
+		43AADC7D183EBB2800D5D725 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADC7C183EBB2800D5D725 /* UIKit.framework */; };
+		43AADC83183EBB2800D5D725 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43AADC81183EBB2800D5D725 /* InfoPlist.strings */; };
+		43AADC85183EBB2800D5D725 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AADC84183EBB2800D5D725 /* main.m */; };
+		43AADC89183EBB2800D5D725 /* CFTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AADC88183EBB2800D5D725 /* CFTAppDelegate.m */; };
+		43AADC8B183EBB2800D5D725 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43AADC8A183EBB2800D5D725 /* Images.xcassets */; };
+		43AADC92183EBB2800D5D725 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADC91183EBB2800D5D725 /* XCTest.framework */; };
+		43AADC93183EBB2800D5D725 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADC78183EBB2800D5D725 /* Foundation.framework */; };
+		43AADC94183EBB2800D5D725 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADC7C183EBB2800D5D725 /* UIKit.framework */; };
+		43AADC9C183EBB2800D5D725 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43AADC9A183EBB2800D5D725 /* InfoPlist.strings */; };
+		43AADC9E183EBB2800D5D725 /* SDKSandboxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AADC9D183EBB2800D5D725 /* SDKSandboxTests.m */; };
+		43AADCB3183EBB3900D5D725 /* libCardFlightLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADCB0183EBB3900D5D725 /* libCardFlightLibrary.a */; };
+		43AADCB7183EBB4D00D5D725 /* CFTTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AADCB6183EBB4D00D5D725 /* CFTTestViewController.m */; };
+		43AADCB9183EBC5400D5D725 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADCB8183EBC5400D5D725 /* AVFoundation.framework */; };
+		43AADCBB183EBC5B00D5D725 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADCBA183EBC5B00D5D725 /* AudioToolbox.framework */; };
+		43AADCBD183EBC6400D5D725 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADCBC183EBC6400D5D725 /* MediaPlayer.framework */; };
+		43AADCBF183EBC6C00D5D725 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADCBE183EBC6C00D5D725 /* MessageUI.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		43AADC95183EBB2800D5D725 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43AADC6D183EBB2800D5D725 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43AADC74183EBB2800D5D725;
+			remoteInfo = SDKSandbox;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		434646A318592056001F9193 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		43AADC75183EBB2800D5D725 /* SDKSandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDKSandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		43AADC78183EBB2800D5D725 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		43AADC7A183EBB2800D5D725 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		43AADC7C183EBB2800D5D725 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		43AADC80183EBB2800D5D725 /* SDKSandbox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SDKSandbox-Info.plist"; sourceTree = "<group>"; };
+		43AADC82183EBB2800D5D725 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		43AADC84183EBB2800D5D725 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		43AADC86183EBB2800D5D725 /* SDKSandbox-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SDKSandbox-Prefix.pch"; sourceTree = "<group>"; };
+		43AADC87183EBB2800D5D725 /* CFTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFTAppDelegate.h; sourceTree = "<group>"; };
+		43AADC88183EBB2800D5D725 /* CFTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CFTAppDelegate.m; sourceTree = "<group>"; };
+		43AADC8A183EBB2800D5D725 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		43AADC90183EBB2800D5D725 /* SDKSandboxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SDKSandboxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		43AADC91183EBB2800D5D725 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		43AADC99183EBB2800D5D725 /* SDKSandboxTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SDKSandboxTests-Info.plist"; sourceTree = "<group>"; };
+		43AADC9B183EBB2800D5D725 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		43AADC9D183EBB2800D5D725 /* SDKSandboxTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDKSandboxTests.m; sourceTree = "<group>"; };
+		43AADCA9183EBB3900D5D725 /* CardFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardFlight.h; sourceTree = "<group>"; };
+		43AADCAA183EBB3900D5D725 /* CFTAPIResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTAPIResource.h; sourceTree = "<group>"; };
+		43AADCAB183EBB3900D5D725 /* CFTCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTCard.h; sourceTree = "<group>"; };
+		43AADCAC183EBB3900D5D725 /* CFTCharge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTCharge.h; sourceTree = "<group>"; };
+		43AADCAD183EBB3900D5D725 /* CFTCustomEntryTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTCustomEntryTextField.h; sourceTree = "<group>"; };
+		43AADCAE183EBB3900D5D725 /* CFTCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTCustomView.h; sourceTree = "<group>"; };
+		43AADCAF183EBB3900D5D725 /* CFTReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTReader.h; sourceTree = "<group>"; };
+		43AADCB0183EBB3900D5D725 /* libCardFlightLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCardFlightLibrary.a; sourceTree = "<group>"; };
+		43AADCB5183EBB4D00D5D725 /* CFTTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTTestViewController.h; sourceTree = "<group>"; };
+		43AADCB6183EBB4D00D5D725 /* CFTTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFTTestViewController.m; sourceTree = "<group>"; };
+		43AADCB8183EBC5400D5D725 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		43AADCBA183EBC5B00D5D725 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		43AADCBC183EBC6400D5D725 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		43AADCBE183EBC6C00D5D725 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		43AADC72183EBB2800D5D725 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				434646A418592056001F9193 /* ExternalAccessory.framework in Frameworks */,
+				43AADCBF183EBC6C00D5D725 /* MessageUI.framework in Frameworks */,
+				43AADCBD183EBC6400D5D725 /* MediaPlayer.framework in Frameworks */,
+				43AADCBB183EBC5B00D5D725 /* AudioToolbox.framework in Frameworks */,
+				43AADCB9183EBC5400D5D725 /* AVFoundation.framework in Frameworks */,
+				43AADC7B183EBB2800D5D725 /* CoreGraphics.framework in Frameworks */,
+				43AADCB3183EBB3900D5D725 /* libCardFlightLibrary.a in Frameworks */,
+				43AADC7D183EBB2800D5D725 /* UIKit.framework in Frameworks */,
+				43AADC79183EBB2800D5D725 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43AADC8D183EBB2800D5D725 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43AADC92183EBB2800D5D725 /* XCTest.framework in Frameworks */,
+				43AADC94183EBB2800D5D725 /* UIKit.framework in Frameworks */,
+				43AADC93183EBB2800D5D725 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		43AADC6C183EBB2800D5D725 = {
+			isa = PBXGroup;
+			children = (
+				43AADCA7183EBB3900D5D725 /* ios-sdk-library-beta */,
+				43AADC7E183EBB2800D5D725 /* SDKSandbox */,
+				43AADC97183EBB2800D5D725 /* SDKSandboxTests */,
+				43AADC77183EBB2800D5D725 /* Frameworks */,
+				43AADC76183EBB2800D5D725 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		43AADC76183EBB2800D5D725 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				43AADC75183EBB2800D5D725 /* SDKSandbox.app */,
+				43AADC90183EBB2800D5D725 /* SDKSandboxTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		43AADC77183EBB2800D5D725 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				434646A318592056001F9193 /* ExternalAccessory.framework */,
+				43AADCBE183EBC6C00D5D725 /* MessageUI.framework */,
+				43AADCBC183EBC6400D5D725 /* MediaPlayer.framework */,
+				43AADCBA183EBC5B00D5D725 /* AudioToolbox.framework */,
+				43AADCB8183EBC5400D5D725 /* AVFoundation.framework */,
+				43AADC78183EBB2800D5D725 /* Foundation.framework */,
+				43AADC7A183EBB2800D5D725 /* CoreGraphics.framework */,
+				43AADC7C183EBB2800D5D725 /* UIKit.framework */,
+				43AADC91183EBB2800D5D725 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		43AADC7E183EBB2800D5D725 /* SDKSandbox */ = {
+			isa = PBXGroup;
+			children = (
+				43AADC87183EBB2800D5D725 /* CFTAppDelegate.h */,
+				43AADC88183EBB2800D5D725 /* CFTAppDelegate.m */,
+				43AADC8A183EBB2800D5D725 /* Images.xcassets */,
+				43AADC7F183EBB2800D5D725 /* Supporting Files */,
+				43AADCB5183EBB4D00D5D725 /* CFTTestViewController.h */,
+				43AADCB6183EBB4D00D5D725 /* CFTTestViewController.m */,
+			);
+			path = SDKSandbox;
+			sourceTree = "<group>";
+		};
+		43AADC7F183EBB2800D5D725 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				43AADC80183EBB2800D5D725 /* SDKSandbox-Info.plist */,
+				43AADC81183EBB2800D5D725 /* InfoPlist.strings */,
+				43AADC84183EBB2800D5D725 /* main.m */,
+				43AADC86183EBB2800D5D725 /* SDKSandbox-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		43AADC97183EBB2800D5D725 /* SDKSandboxTests */ = {
+			isa = PBXGroup;
+			children = (
+				43AADC9D183EBB2800D5D725 /* SDKSandboxTests.m */,
+				43AADC98183EBB2800D5D725 /* Supporting Files */,
+			);
+			path = SDKSandboxTests;
+			sourceTree = "<group>";
+		};
+		43AADC98183EBB2800D5D725 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				43AADC99183EBB2800D5D725 /* SDKSandboxTests-Info.plist */,
+				43AADC9A183EBB2800D5D725 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		43AADCA7183EBB3900D5D725 /* ios-sdk-library-beta */ = {
+			isa = PBXGroup;
+			children = (
+				43AADCA9183EBB3900D5D725 /* CardFlight.h */,
+				43AADCAA183EBB3900D5D725 /* CFTAPIResource.h */,
+				43AADCAB183EBB3900D5D725 /* CFTCard.h */,
+				43AADCAC183EBB3900D5D725 /* CFTCharge.h */,
+				43AADCAD183EBB3900D5D725 /* CFTCustomEntryTextField.h */,
+				43AADCAE183EBB3900D5D725 /* CFTCustomView.h */,
+				43AADCAF183EBB3900D5D725 /* CFTReader.h */,
+				43AADCB0183EBB3900D5D725 /* libCardFlightLibrary.a */,
+			);
+			path = "ios-sdk-library-beta";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		43AADC74183EBB2800D5D725 /* SDKSandbox */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43AADCA1183EBB2800D5D725 /* Build configuration list for PBXNativeTarget "SDKSandbox" */;
+			buildPhases = (
+				43AADC71183EBB2800D5D725 /* Sources */,
+				43AADC72183EBB2800D5D725 /* Frameworks */,
+				43AADC73183EBB2800D5D725 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SDKSandbox;
+			productName = SDKSandbox;
+			productReference = 43AADC75183EBB2800D5D725 /* SDKSandbox.app */;
+			productType = "com.apple.product-type.application";
+		};
+		43AADC8F183EBB2800D5D725 /* SDKSandboxTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43AADCA4183EBB2800D5D725 /* Build configuration list for PBXNativeTarget "SDKSandboxTests" */;
+			buildPhases = (
+				43AADC8C183EBB2800D5D725 /* Sources */,
+				43AADC8D183EBB2800D5D725 /* Frameworks */,
+				43AADC8E183EBB2800D5D725 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				43AADC96183EBB2800D5D725 /* PBXTargetDependency */,
+			);
+			name = SDKSandboxTests;
+			productName = SDKSandboxTests;
+			productReference = 43AADC90183EBB2800D5D725 /* SDKSandboxTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		43AADC6D183EBB2800D5D725 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = CFT;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = CardFlight;
+				TargetAttributes = {
+					43AADC8F183EBB2800D5D725 = {
+						TestTargetID = 43AADC74183EBB2800D5D725;
+					};
+				};
+			};
+			buildConfigurationList = 43AADC70183EBB2800D5D725 /* Build configuration list for PBXProject "SDKSandbox" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 43AADC6C183EBB2800D5D725;
+			productRefGroup = 43AADC76183EBB2800D5D725 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				43AADC74183EBB2800D5D725 /* SDKSandbox */,
+				43AADC8F183EBB2800D5D725 /* SDKSandboxTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		43AADC73183EBB2800D5D725 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43AADC83183EBB2800D5D725 /* InfoPlist.strings in Resources */,
+				43AADC8B183EBB2800D5D725 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43AADC8E183EBB2800D5D725 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43AADC9C183EBB2800D5D725 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		43AADC71183EBB2800D5D725 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43AADC89183EBB2800D5D725 /* CFTAppDelegate.m in Sources */,
+				43AADC85183EBB2800D5D725 /* main.m in Sources */,
+				43AADCB7183EBB4D00D5D725 /* CFTTestViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43AADC8C183EBB2800D5D725 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43AADC9E183EBB2800D5D725 /* SDKSandboxTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		43AADC96183EBB2800D5D725 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43AADC74183EBB2800D5D725 /* SDKSandbox */;
+			targetProxy = 43AADC95183EBB2800D5D725 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		43AADC81183EBB2800D5D725 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				43AADC82183EBB2800D5D725 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		43AADC9A183EBB2800D5D725 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				43AADC9B183EBB2800D5D725 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		43AADC9F183EBB2800D5D725 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		43AADCA0183EBB2800D5D725 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		43AADCA2183EBB2800D5D725 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/paultower/CardFlight/SDKSandbox,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SDKSandbox/SDKSandbox-Prefix.pch";
+				INFOPLIST_FILE = "SDKSandbox/SDKSandbox-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/paultower/CardFlight/SDKSandbox/ios-sdk-library-beta",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		43AADCA3183EBB2800D5D725 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/paultower/CardFlight/SDKSandbox,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SDKSandbox/SDKSandbox-Prefix.pch";
+				INFOPLIST_FILE = "SDKSandbox/SDKSandbox-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/paultower/CardFlight/SDKSandbox/ios-sdk-library-beta",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		43AADCA5183EBB2800D5D725 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SDKSandbox.app/SDKSandbox";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SDKSandbox/SDKSandbox-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SDKSandboxTests/SDKSandboxTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		43AADCA6183EBB2800D5D725 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SDKSandbox.app/SDKSandbox";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SDKSandbox/SDKSandbox-Prefix.pch";
+				INFOPLIST_FILE = "SDKSandboxTests/SDKSandboxTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		43AADC70183EBB2800D5D725 /* Build configuration list for PBXProject "SDKSandbox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43AADC9F183EBB2800D5D725 /* Debug */,
+				43AADCA0183EBB2800D5D725 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43AADCA1183EBB2800D5D725 /* Build configuration list for PBXNativeTarget "SDKSandbox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43AADCA2183EBB2800D5D725 /* Debug */,
+				43AADCA3183EBB2800D5D725 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43AADCA4183EBB2800D5D725 /* Build configuration list for PBXNativeTarget "SDKSandboxTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43AADCA5183EBB2800D5D725 /* Debug */,
+				43AADCA6183EBB2800D5D725 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 43AADC6D183EBB2800D5D725 /* Project object */;
+}
