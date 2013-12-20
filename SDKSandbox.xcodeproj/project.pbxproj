@@ -20,12 +20,12 @@
 		43AADC94183EBB2800D5D725 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADC7C183EBB2800D5D725 /* UIKit.framework */; };
 		43AADC9C183EBB2800D5D725 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43AADC9A183EBB2800D5D725 /* InfoPlist.strings */; };
 		43AADC9E183EBB2800D5D725 /* SDKSandboxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AADC9D183EBB2800D5D725 /* SDKSandboxTests.m */; };
-		43AADCB3183EBB3900D5D725 /* libCardFlightLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADCB0183EBB3900D5D725 /* libCardFlightLibrary.a */; };
 		43AADCB7183EBB4D00D5D725 /* CFTTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43AADCB6183EBB4D00D5D725 /* CFTTestViewController.m */; };
 		43AADCB9183EBC5400D5D725 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADCB8183EBC5400D5D725 /* AVFoundation.framework */; };
 		43AADCBB183EBC5B00D5D725 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADCBA183EBC5B00D5D725 /* AudioToolbox.framework */; };
 		43AADCBD183EBC6400D5D725 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADCBC183EBC6400D5D725 /* MediaPlayer.framework */; };
 		43AADCBF183EBC6C00D5D725 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADCBE183EBC6C00D5D725 /* MessageUI.framework */; };
+		43B7E7A71864E2BA008B0DFE /* libCardFlightLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43B7E7A41864E2BA008B0DFE /* libCardFlightLibrary.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,20 +56,21 @@
 		43AADC99183EBB2800D5D725 /* SDKSandboxTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SDKSandboxTests-Info.plist"; sourceTree = "<group>"; };
 		43AADC9B183EBB2800D5D725 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		43AADC9D183EBB2800D5D725 /* SDKSandboxTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDKSandboxTests.m; sourceTree = "<group>"; };
-		43AADCA9183EBB3900D5D725 /* CardFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardFlight.h; sourceTree = "<group>"; };
-		43AADCAA183EBB3900D5D725 /* CFTAPIResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTAPIResource.h; sourceTree = "<group>"; };
-		43AADCAB183EBB3900D5D725 /* CFTCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTCard.h; sourceTree = "<group>"; };
-		43AADCAC183EBB3900D5D725 /* CFTCharge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTCharge.h; sourceTree = "<group>"; };
-		43AADCAD183EBB3900D5D725 /* CFTCustomEntryTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTCustomEntryTextField.h; sourceTree = "<group>"; };
-		43AADCAE183EBB3900D5D725 /* CFTCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTCustomView.h; sourceTree = "<group>"; };
-		43AADCAF183EBB3900D5D725 /* CFTReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTReader.h; sourceTree = "<group>"; };
-		43AADCB0183EBB3900D5D725 /* libCardFlightLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCardFlightLibrary.a; sourceTree = "<group>"; };
 		43AADCB5183EBB4D00D5D725 /* CFTTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTTestViewController.h; sourceTree = "<group>"; };
 		43AADCB6183EBB4D00D5D725 /* CFTTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFTTestViewController.m; sourceTree = "<group>"; };
 		43AADCB8183EBC5400D5D725 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		43AADCBA183EBC5B00D5D725 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		43AADCBC183EBC6400D5D725 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		43AADCBE183EBC6C00D5D725 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		43B7E79C1864E2BA008B0DFE /* CardFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardFlight.h; sourceTree = "<group>"; };
+		43B7E79D1864E2BA008B0DFE /* CFTAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTAccount.h; sourceTree = "<group>"; };
+		43B7E79E1864E2BA008B0DFE /* CFTAPIResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTAPIResource.h; sourceTree = "<group>"; };
+		43B7E79F1864E2BA008B0DFE /* CFTCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTCard.h; sourceTree = "<group>"; };
+		43B7E7A01864E2BA008B0DFE /* CFTCharge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTCharge.h; sourceTree = "<group>"; };
+		43B7E7A11864E2BA008B0DFE /* CFTCustomEntryTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTCustomEntryTextField.h; sourceTree = "<group>"; };
+		43B7E7A21864E2BA008B0DFE /* CFTCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTCustomView.h; sourceTree = "<group>"; };
+		43B7E7A31864E2BA008B0DFE /* CFTReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTReader.h; sourceTree = "<group>"; };
+		43B7E7A41864E2BA008B0DFE /* libCardFlightLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCardFlightLibrary.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +84,7 @@
 				43AADCBB183EBC5B00D5D725 /* AudioToolbox.framework in Frameworks */,
 				43AADCB9183EBC5400D5D725 /* AVFoundation.framework in Frameworks */,
 				43AADC7B183EBB2800D5D725 /* CoreGraphics.framework in Frameworks */,
-				43AADCB3183EBB3900D5D725 /* libCardFlightLibrary.a in Frameworks */,
+				43B7E7A71864E2BA008B0DFE /* libCardFlightLibrary.a in Frameworks */,
 				43AADC7D183EBB2800D5D725 /* UIKit.framework in Frameworks */,
 				43AADC79183EBB2800D5D725 /* Foundation.framework in Frameworks */,
 			);
@@ -105,7 +106,7 @@
 		43AADC6C183EBB2800D5D725 = {
 			isa = PBXGroup;
 			children = (
-				43AADCA7183EBB3900D5D725 /* ios-sdk-library-beta */,
+				43B7E79A1864E2BA008B0DFE /* lib */,
 				43AADC7E183EBB2800D5D725 /* SDKSandbox */,
 				43AADC97183EBB2800D5D725 /* SDKSandboxTests */,
 				43AADC77183EBB2800D5D725 /* Frameworks */,
@@ -180,19 +181,20 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		43AADCA7183EBB3900D5D725 /* ios-sdk-library-beta */ = {
+		43B7E79A1864E2BA008B0DFE /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				43AADCA9183EBB3900D5D725 /* CardFlight.h */,
-				43AADCAA183EBB3900D5D725 /* CFTAPIResource.h */,
-				43AADCAB183EBB3900D5D725 /* CFTCard.h */,
-				43AADCAC183EBB3900D5D725 /* CFTCharge.h */,
-				43AADCAD183EBB3900D5D725 /* CFTCustomEntryTextField.h */,
-				43AADCAE183EBB3900D5D725 /* CFTCustomView.h */,
-				43AADCAF183EBB3900D5D725 /* CFTReader.h */,
-				43AADCB0183EBB3900D5D725 /* libCardFlightLibrary.a */,
+				43B7E79C1864E2BA008B0DFE /* CardFlight.h */,
+				43B7E79D1864E2BA008B0DFE /* CFTAccount.h */,
+				43B7E79E1864E2BA008B0DFE /* CFTAPIResource.h */,
+				43B7E79F1864E2BA008B0DFE /* CFTCard.h */,
+				43B7E7A01864E2BA008B0DFE /* CFTCharge.h */,
+				43B7E7A11864E2BA008B0DFE /* CFTCustomEntryTextField.h */,
+				43B7E7A21864E2BA008B0DFE /* CFTCustomView.h */,
+				43B7E7A31864E2BA008B0DFE /* CFTReader.h */,
+				43B7E7A41864E2BA008B0DFE /* libCardFlightLibrary.a */,
 			);
-			path = "ios-sdk-library-beta";
+			path = lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -415,7 +417,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/paultower/CardFlight/SDKSandbox,
+					"$(SRCROOT)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SDKSandbox/SDKSandbox-Prefix.pch";
@@ -423,7 +425,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/paultower/CardFlight/SDKSandbox/ios-sdk-library-beta",
+					"$(SRCROOT)/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -439,7 +441,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/paultower/CardFlight/SDKSandbox,
+					"$(SRCROOT)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SDKSandbox/SDKSandbox-Prefix.pch";
@@ -447,7 +449,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/paultower/CardFlight/SDKSandbox/ios-sdk-library-beta",
+					"$(SRCROOT)/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
