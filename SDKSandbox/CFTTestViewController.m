@@ -33,8 +33,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
 @implementation CFTTestViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -49,52 +49,114 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     _cardReader = [[CFTReader alloc] initAndConnect];
     [_cardReader setDelegate:self];
     
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 25, [UIScreen mainScreen].bounds.size.width, 20)];
+    UILabel *headerLabel = [[UILabel alloc] init];
+    [headerLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [headerLabel setTextAlignment:NSTextAlignmentCenter];
     if ([UIFont respondsToSelector:@selector(preferredFontForTextStyle:)]) {
         [headerLabel setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]];
     }
-    [headerLabel setText:@"SDK Sandbox"];
+    [headerLabel setText:@"CardFlight SDK Sandbox"];
     [self.view addSubview:headerLabel];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[headerLabel]-|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(headerLabel)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-45-[headerLabel]"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(headerLabel)]];
     
-    UILabel *versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, headerLabel.frame.origin.y + 25, [UIScreen mainScreen].bounds.size.width, 20)];
+    UILabel *versionLabel = [[UILabel alloc] init];
+    [versionLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [versionLabel setTextAlignment:NSTextAlignmentCenter];
     [versionLabel setText:[NSString stringWithFormat:@"SDK %@     iOS %@",
                            [[CardFlight sharedInstance] SDKVersion],
                            [[UIDevice currentDevice] systemVersion]]];
     [self.view addSubview:versionLabel];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[versionLabel]-|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(versionLabel)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[headerLabel]-20-[versionLabel]"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(headerLabel, versionLabel)]];
     
     UIButton *swipeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [swipeButton setFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width / 2) - 70, versionLabel.frame.origin.y + 50, 140, 44)];
+    [swipeButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [swipeButton setTitle:@"Attempt Swipe" forState:UIControlStateNormal];
     [swipeButton addTarget:self
                     action:@selector(swipeCard:)
           forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:swipeButton];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[swipeButton]-|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(swipeButton)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[versionLabel]-30-[swipeButton]"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(swipeButton, versionLabel)]];
     
     UIButton *serialButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [serialButton setFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width / 2) - 70, swipeButton.frame.origin.y + 65, 140, 44)];
+    [serialButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [serialButton setTitle:@"Serial Number" forState:UIControlStateNormal];
     [serialButton addTarget:self
                     action:@selector(displaySerialNumber:)
           forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:serialButton];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[serialButton]-|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(serialButton)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[swipeButton]-30-[serialButton]"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(swipeButton, serialButton)]];
     
-    _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, serialButton.frame.origin.y + 65, [UIScreen mainScreen].bounds.size.width, 20)];
+    _nameLabel = [[UILabel alloc] init];
+    [_nameLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_nameLabel setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:_nameLabel];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[_nameLabel]-|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(_nameLabel)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[serialButton]-30-[_nameLabel]"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(_nameLabel, serialButton)]];
     
-    _numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _nameLabel.frame.origin.y + 25, [UIScreen mainScreen].bounds.size.width, 20)];
+    _numberLabel = [[UILabel alloc] init];
+    [_numberLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_numberLabel setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:_numberLabel];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[_numberLabel]-|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(_numberLabel)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_nameLabel]-10-[_numberLabel]"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(_nameLabel, _numberLabel)]];
     
-    _errorMessage = [[UILabel alloc] initWithFrame:CGRectMake(10, _numberLabel.frame.origin.y + 50, [UIScreen mainScreen].bounds.size.width - 20, 80)];
+    _errorMessage = [[UILabel alloc] init];
+    [_errorMessage setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_errorMessage setTextAlignment:NSTextAlignmentCenter];
     [_errorMessage setNumberOfLines:0];
     [_errorMessage setLineBreakMode:NSLineBreakByWordWrapping];
     [self.view addSubview:_errorMessage];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[_errorMessage]-|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(_errorMessage)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_numberLabel]-30-[_errorMessage]"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(_errorMessage, _numberLabel)]];
     
-    _timeoutText = [[UITextField alloc] initWithFrame:CGRectMake(90, [UIScreen mainScreen].bounds.size.height - 100, 50, 40)];
+    _timeoutText = [[UITextField alloc] init];
+    [_timeoutText setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_timeoutText setDelegate:self];
     [_timeoutText setKeyboardAppearance:UIKeyboardAppearanceDark];
     [_timeoutText setReturnKeyType:UIReturnKeyDone];
@@ -102,28 +164,50 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [_timeoutText setLeftView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 0)]];
     [_timeoutText setLeftViewMode:UITextFieldViewModeAlways];
     [_timeoutText setText:@"20"];
-    [self.view addSubview:_timeoutText];
+//    [self.view addSubview:_timeoutText];
     
     UIButton *timeoutButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [timeoutButton setFrame:CGRectMake(140, _timeoutText.frame.origin.y, 100, 44)];
+    [timeoutButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [timeoutButton setTitle:@"Set Duration" forState:UIControlStateNormal];
     [timeoutButton addTarget:self
                       action:@selector(setDuration:)
             forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:timeoutButton];
+//    [self.view addSubview:timeoutButton];
     
-    _readerStatus = [[UILabel alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 40, [UIScreen mainScreen].bounds.size.width, 20)];
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[_timeoutText]-5-[timeoutButton]-|"
+//                                                                      options:0
+//                                                                      metrics:nil
+//                                                                        views:NSDictionaryOfVariableBindings(_timeoutText, timeoutButton)]];
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_timeoutText]-80-|"
+//                                                                      options:0
+//                                                                      metrics:nil
+//                                                                        views:NSDictionaryOfVariableBindings(_timeoutText)]];
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[timeoutButton]-80-|"
+//                                                                      options:0
+//                                                                      metrics:nil
+//                                                                        views:NSDictionaryOfVariableBindings(timeoutButton)]];
+    
+    _readerStatus = [[UILabel alloc] init];
+    [_readerStatus setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_readerStatus setTextAlignment:NSTextAlignmentCenter];
     [_readerStatus setTextColor:[UIColor redColor]];
     [_readerStatus setText:@"NOT CONNECTED"];
     [self.view addSubview:_readerStatus];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[_readerStatus]-|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(_readerStatus)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_readerStatus]-20-|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(_readerStatus)]];
 }
 
 - (void)swipeCard:(id)sender {
     
     [_nameLabel setText:@""];
     [_numberLabel setText:@""];
-    [_cardReader beginSwipeWithMessage:@"Swipe yo face!"];
+    [_cardReader beginSwipeWithMessage:@"Swipe your card now"];
     [_errorMessage setText:@""];
 }
 
@@ -149,17 +233,17 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     if (!error) {
         [_nameLabel setText:card.name];
         [_numberLabel setText:card.encryptedCardNumber];
-//        NSDictionary *paymentInfo = @{@"amount":[NSDecimalNumber decimalNumberWithString:@"1.00"],
-//                                      @"currency": @"USD",
-//                                      @"description": @"PHHHOTO delivered to "};
-//        [card chargeCardWithParameters:paymentInfo
-//                               success:^(CFTCharge *charge) {
-//                                   NSLog(@"Successfully charged: %@", charge);
-//                                }
-//                                failure:^(NSError *error) {
-//                                    // NSLog(@"Error charging card: %@", [error localizedDescription]);
-//                                    [self displayError:error];
-//                                }];
+        NSDictionary *paymentInfo = @{@"amount":[NSDecimalNumber decimalNumberWithString:@"1.00"],
+                                      @"currency": @"USD",
+                                      @"description": @"Description"};
+        [card chargeCardWithParameters:paymentInfo
+                               success:^(CFTCharge *charge) {
+                                   NSLog(@"Successfully charged: %@", charge);
+                                }
+                                failure:^(NSError *error) {
+                                    NSLog(@"Error charging card: %@", [error localizedDescription]);
+                                    //[self displayError:error];
+                                }];
     }
     else {
         // NSLog(@"Error: %@", [error localizedDescription]);
