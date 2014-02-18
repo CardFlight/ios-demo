@@ -44,6 +44,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
 @implementation CFTTestViewController
 
+#pragma mark - Init Methods
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -51,6 +53,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     }
     return self;
 }
+
+#pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
     
@@ -215,6 +219,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
                                                                       metrics:nil
                                                                         views:NSDictionaryOfVariableBindings(_readerStatus)]];
 }
+
+#pragma mark - Private Methods
 
 - (void)swipeCard:(id)sender {
     
