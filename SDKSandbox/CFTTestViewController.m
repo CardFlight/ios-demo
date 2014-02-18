@@ -20,10 +20,21 @@
 @property (nonatomic) UILabel *nameLabel;
 @property (nonatomic) UILabel *numberLabel;
 @property (nonatomic) UILabel *readerStatus;
-@property (nonatomic) UILabel *errorMessage;
+@property (nonatomic) UILabel *messageLabel;
 @property (nonatomic) UITextField *timeoutText;
 
 @end
+
+/*
+ * Copy and paste your api key and account token below to make
+ * test charges with CardFlight. The information can be found
+ * in your developer dashboard at getcardflight.com
+*/
+static NSString *API_KEY = @"PUT_YOUR_API_KEY_HERE";
+static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
+
+
+
 
 static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
 static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
@@ -37,7 +48,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -45,6 +55,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    [[CardFlight sharedInstance] setApiToken:API_KEY
+                                accountToken:ACCOUNT_TOKEN];
     
     _cardReader = [[CFTReader alloc] initAndConnect];
     [_cardReader setDelegate:self];
@@ -140,20 +153,20 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
                                                                       metrics:nil
                                                                         views:NSDictionaryOfVariableBindings(_nameLabel, _numberLabel)]];
     
-    _errorMessage = [[UILabel alloc] init];
-    [_errorMessage setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [_errorMessage setTextAlignment:NSTextAlignmentCenter];
-    [_errorMessage setNumberOfLines:0];
-    [_errorMessage setLineBreakMode:NSLineBreakByWordWrapping];
-    [self.view addSubview:_errorMessage];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[_errorMessage]-|"
+    _messageLabel = [[UILabel alloc] init];
+    [_messageLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_messageLabel setTextAlignment:NSTextAlignmentCenter];
+    [_messageLabel setNumberOfLines:0];
+    [_messageLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    [self.view addSubview:_messageLabel];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[_messageLabel]-|"
                                                                       options:0
                                                                       metrics:nil
-                                                                        views:NSDictionaryOfVariableBindings(_errorMessage)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_numberLabel]-30-[_errorMessage]"
+                                                                        views:NSDictionaryOfVariableBindings(_messageLabel)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_numberLabel]-30-[_messageLabel]"
                                                                       options:0
                                                                       metrics:nil
-                                                                        views:NSDictionaryOfVariableBindings(_errorMessage, _numberLabel)]];
+                                                                        views:NSDictionaryOfVariableBindings(_messageLabel, _numberLabel)]];
     
     _timeoutText = [[UITextField alloc] init];
     [_timeoutText setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -164,7 +177,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [_timeoutText setLeftView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 0)]];
     [_timeoutText setLeftViewMode:UITextFieldViewModeAlways];
     [_timeoutText setText:@"20"];
-//    [self.view addSubview:_timeoutText];
+    [self.view addSubview:_timeoutText];
     
     UIButton *timeoutButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [timeoutButton setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -172,20 +185,20 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [timeoutButton addTarget:self
                       action:@selector(setDuration:)
             forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:timeoutButton];
+    [self.view addSubview:timeoutButton];
     
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[_timeoutText]-5-[timeoutButton]-|"
-//                                                                      options:0
-//                                                                      metrics:nil
-//                                                                        views:NSDictionaryOfVariableBindings(_timeoutText, timeoutButton)]];
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_timeoutText]-80-|"
-//                                                                      options:0
-//                                                                      metrics:nil
-//                                                                        views:NSDictionaryOfVariableBindings(_timeoutText)]];
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[timeoutButton]-80-|"
-//                                                                      options:0
-//                                                                      metrics:nil
-//                                                                        views:NSDictionaryOfVariableBindings(timeoutButton)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_timeoutText]-80-|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(_timeoutText)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[timeoutButton]-80-|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(timeoutButton)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-[_timeoutText(45)]-5-[timeoutButton]-|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(_timeoutText, timeoutButton)]];
     
     _readerStatus = [[UILabel alloc] init];
     [_readerStatus setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -208,12 +221,12 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [_nameLabel setText:@""];
     [_numberLabel setText:@""];
     [_cardReader beginSwipeWithMessage:@"Swipe your card now"];
-    [_errorMessage setText:@""];
+    [_messageLabel setText:@""];
 }
 
 - (void)displayError:(NSError *)error {
     
-    [_errorMessage setText:[NSString stringWithFormat:@"Error %i - %@", error.code, error.localizedDescription]];
+    [_messageLabel setText:[NSString stringWithFormat:@"Error %i - %@", error.code, error.localizedDescription]];
 }
 
 - (void)displaySerialNumber:(id)sender {
@@ -238,15 +251,13 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
                                       @"description": @"Description"};
         [card chargeCardWithParameters:paymentInfo
                                success:^(CFTCharge *charge) {
-                                   NSLog(@"Successfully charged: %@", charge);
+                                   [_messageLabel setText:[NSString stringWithFormat:@"Successfully charged: %@", charge]];
                                 }
                                 failure:^(NSError *error) {
-                                    NSLog(@"Error charging card: %@", [error localizedDescription]);
-                                    //[self displayError:error];
+                                    [self displayError:error];
                                 }];
     }
     else {
-        // NSLog(@"Error: %@", [error localizedDescription]);
         [self displayError:error];
     }
 }
@@ -278,7 +289,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
 - (void)readerSerialNumber:(NSString *)serialNumber {
     
-    [_errorMessage setText:[NSString stringWithFormat:@"Serial Number: %@", serialNumber]];
+    [_messageLabel setText:[NSString stringWithFormat:@"Serial Number: %@", serialNumber]];
 }
 
 #pragma mark - UITextField Delegate
