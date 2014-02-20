@@ -8,7 +8,6 @@
 
 #import "CFTAppDelegate.h"
 #import "CFTTestViewController.h"
-#import "CardFlight.h"
 
 @implementation CFTAppDelegate
 
@@ -16,8 +15,6 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    [[CardFlight sharedInstance] setApiToken:@"be0ac435062a09ed4851f451149b6701" accountToken:@"acc_d3fdff4d44c7c89c"];
-
     CFTTestViewController *vc = [[CFTTestViewController alloc] init];
     [_window setRootViewController:vc];
     

@@ -232,7 +232,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
 - (void)displayError:(NSError *)error {
     
-    [_messageLabel setText:[NSString stringWithFormat:@"Error %i - %@", error.code, error.localizedDescription]];
+    [_messageLabel setText:[NSString stringWithFormat:@"Error %li - %@", (long)error.code, error.localizedDescription]];
 }
 
 - (void)displaySerialNumber:(id)sender {
