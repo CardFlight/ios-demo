@@ -66,6 +66,12 @@
  */
 - (void)readerSerialNumber:(NSString *)serialNumber;
 
+/**
+ * Optional protocol method that gets called after the user cancels
+ * a swipe.
+ */
+- (void)readerSwipeDidCancel;
+
 @end
 
 @interface CFTReader : NSObject
@@ -99,20 +105,24 @@
 - (void)cancelSwipeWithMessage:(NSString *)message;
 
 /**
- * Manually attempt the connection process with the hardware reader.
- */
-- (void)connect;
-
-/**
- * Manually attempt the disconnect process with the hardware reader.
- */
-- (void)disconnect;
-
-/**
  * Communicate with the hardware reader and retrieve the serial number.
  * The hardware reader must not be performing any other functions.
  * Returns YES if command is successfully started, NO otherwise.
  */
 - (BOOL)retrieveSerialNumber;
+
+// ******************** DEPRECATED ********************
+
+/**
+ * Manually attempt the connection process with the hardware reader.
+ * THIS WILL BE REMOVED IN A LATER RELEASE
+ */
+- (void)connect;
+
+/**
+ * Manually attempt the disconnect process with the hardware reader.
+ * THIS WILL BE REMOVED IN A LATER RELEASE
+ */
+- (void)disconnect;
 
 @end

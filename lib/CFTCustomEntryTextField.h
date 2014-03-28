@@ -25,13 +25,16 @@
  * The following public methods allow customization of the manual
  * entry textfields while preventing direct access to the contents.
  * You can set values but cannot read them.
- * Currently, auto layout is not supported.
+ * Auto layout is now supported by adding constraints to the CFTCustomView
  */
 
-- (void)customFieldFrame:(CGRect)newFrame;
 - (void)customFieldText:(NSString *)newText;
 - (void)customFieldTag:(NSInteger)newTag;
 - (void)customFieldBackground:(UIImage *)newBackground;
+- (void)customFieldLeftView:(UIView *)newView;
+- (void)customFieldLeftViewMode:(UITextFieldViewMode)newViewMode;
+- (void)customFieldRightView:(UIView *)newView;
+- (void)customFieldRightViewMode:(UITextFieldViewMode)newViewMode;
 - (void)customFieldFont:(UIFont *)newFont;
 - (void)customFieldTextColor:(UIColor *)newColor;
 - (void)customFieldPlaceholder:(NSString *)newPlaceholder;
@@ -41,6 +44,14 @@
 - (void)customFieldKeyboardType:(UIKeyboardType)newKeyboard;
 - (void)customFieldKeyboardAppearance:(UIKeyboardAppearance)newKeyboardAppearance;
 - (void)customFieldReturnKeyType:(UIReturnKeyType)newReturnKeyType;
+- (void)customFieldBecomeFirstResponder;
 - (void)customFieldResignFirstResponder;
+
+// ******************** DEPRECATED ********************
+
+/**
+  * THIS WILL BE REMOVED IN A LATER RELEASE
+ */
+- (void)customFieldFrame:(CGRect)newFrame;
 
 @end

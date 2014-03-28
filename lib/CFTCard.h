@@ -39,6 +39,7 @@ typedef enum CFCardType {
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *encryptedCardNumber;
 @property (nonatomic) NSString *cardToken;
+@property (nonatomic) NSString *zipCode;
 
 /**
  * Convenience method to check that the credit card number is formatted
