@@ -15,6 +15,10 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    if ([self.window respondsToSelector:@selector(setTintColor:)]) {
+        [self.window setTintColor:[UIColor colorWithRed:0.075f green:0.443f blue:0.812f alpha:1.000f]];
+    }
+    
     CFTTestViewController *vc = [[CFTTestViewController alloc] init];
     [_window setRootViewController:vc];
     

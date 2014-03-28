@@ -50,8 +50,9 @@
       "scale" : "1x"
     },
     {
-      "idiom" : "ipad",
       "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "80x80-1.png",
       "scale" : "2x"
     },
     {
@@ -65,8 +66,9 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "ipad",
       "size" : "72x72",
+      "idiom" : "ipad",
+      "filename" : "72x72.png",
       "scale" : "1x"
     },
     {
