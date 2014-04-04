@@ -9,24 +9,23 @@
 #import "CFTTestViewController.h"
 #import "CFTReader.h"
 #import "CFTCard.h"
-#import "CFTCustomView.h"
-#import "CFTCustomEntryTextField.h"
 #import "CardFlight.h"
+#import "CFTPaymentView.h"
 
-@interface CFTTestViewController () <readerDelegate, UITextFieldDelegate> {
+@interface CFTTestViewController () <readerDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate> {
     
     CGFloat animatedDistance;
 }
 
 @property (nonatomic) CFTReader *cardReader;
+@property (nonatomic) CFTCard *card;
 @property (nonatomic) UILabel *nameLabel;
 @property (nonatomic) UILabel *numberLabel;
 @property (nonatomic) UILabel *readerStatus;
 @property (nonatomic) UILabel *messageLabel;
 @property (nonatomic) UITextField *timeoutText;
-@property (nonatomic) CFTCustomView *customView;
-@property (nonatomic) UITextField *expirationDate;
-@property (nonatomic) UITextField *cvv;
+@property (nonatomic) UIButton *chargeButton;
+@property (nonatomic) CFTPaymentView *paymentView;
 
 @end
 
@@ -38,8 +37,11 @@
  * test charges with CardFlight. The information can be found
  * in your developer dashboard at getcardflight.com
 */
-static NSString *API_KEY = @"PUT_YOUR_API_KEY_HERE";
-static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
+static NSString *API_KEY = @"eed212eed2dd88499950ade2425f9881";
+static NSString *ACCOUNT_TOKEN = @"acc_f6c0bba813e64bf7";
+
+//static NSString *API_KEY = @"PUT_YOUR_API_KEY_HERE";
+//static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
 
 
 
@@ -67,12 +69,16 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
     
     [super viewDidLoad];
     
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [singleTap setNumberOfTapsRequired:1];
+    [self.view addGestureRecognizer:singleTap];
+    
     [[NSUserDefaults standardUserDefaults] setObject:@"https://staging.api.getcardflight.com/" forKey:@"ROOT_API_URL"];
     
     [[CardFlight sharedInstance] setApiToken:API_KEY
                                 accountToken:ACCOUNT_TOKEN];
     [[CardFlight sharedInstance] setAttacheReader:NO];
-    [[CardFlight sharedInstance] setLogging:YES];
+    [[CardFlight sharedInstance] setLogging:NO];
     
     _cardReader = [[CFTReader alloc] initAndConnect];
     [_cardReader setDelegate:self];
@@ -105,21 +111,6 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
                     action:@selector(displaySerialNumber:)
           forControlEvents:UIControlEventTouchUpInside];
     
-    _customView = [[CFTCustomView alloc] initWithNameField];
-    [_customView.cardNumber customFieldBorderStyle:UITextBorderStyleRoundedRect];
-    [_customView.cardNumber customFieldPlaceholder:@"Card Number"];
-    [_customView.cardNumber customFieldFont:defaultFont];
-    
-    _expirationDate = [[UITextField alloc] init];
-    [_expirationDate setBorderStyle:UITextBorderStyleRoundedRect];
-    [_expirationDate setFont:defaultFont];
-    [_expirationDate setPlaceholder:@"Exp Date"];
-    
-    _cvv = [[UITextField alloc] init];
-    [_cvv setBorderStyle:UITextBorderStyleRoundedRect];
-    [_cvv setFont:defaultFont];
-    [_cvv setPlaceholder:@"CVV"];
-    
     _nameLabel = [[UILabel alloc] init];
     [_nameLabel setTextAlignment:NSTextAlignmentCenter];
     [_nameLabel setFont:defaultFont];
@@ -151,6 +142,13 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
                       action:@selector(setDuration:)
             forControlEvents:UIControlEventTouchUpInside];
     
+    _chargeButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [_chargeButton setTitle:@"Test Charge" forState:UIControlStateNormal];
+    [_chargeButton.titleLabel setFont:defaultFont];
+    [_chargeButton addTarget:self
+                      action:@selector(chargeButtonPressed:)
+            forControlEvents:UIControlEventTouchUpInside];
+    
     _readerStatus = [[UILabel alloc] init];
     [_readerStatus setTextAlignment:NSTextAlignmentCenter];
     [_readerStatus setTextColor:[UIColor redColor]];
@@ -167,9 +165,7 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
     [_timeoutText setTranslatesAutoresizingMaskIntoConstraints:NO];
     [timeoutButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_readerStatus setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [_customView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [_expirationDate setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [_cvv setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_chargeButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     [self.view addSubview:headerLabel];
     [self.view addSubview:versionLabel];
@@ -181,11 +177,9 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
     [self.view addSubview:_timeoutText];
     [self.view addSubview:timeoutButton];
     [self.view addSubview:_readerStatus];
-    [self.view addSubview:_customView];
-    [self.view addSubview:_expirationDate];
-    [self.view addSubview:_cvv];
+    [self.view addSubview:_chargeButton];
     
-    NSDictionary *constraints = NSDictionaryOfVariableBindings(headerLabel, versionLabel, swipeButton, serialButton, timeoutButton, _readerStatus, _customView, _expirationDate);
+    NSDictionary *constraints = NSDictionaryOfVariableBindings(headerLabel, versionLabel, swipeButton, serialButton, timeoutButton, _readerStatus, _chargeButton, _messageLabel);
     if ([self respondsToSelector:@selector(topLayoutGuide)]) {
         id topGuide = self.topLayoutGuide;
         [self addVisualConstraints:@"V:[topGuide]-[headerLabel]"
@@ -195,27 +189,23 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
                     withDictionary:NSDictionaryOfVariableBindings(headerLabel)];
     }
     
-    [self addVisualConstraints:@"V:[headerLabel]-12-[versionLabel]-15-[swipeButton]-15-[_customView]-[_expirationDate]"
+    [self addVisualConstraints:@"V:[headerLabel]-12-[versionLabel]-15-[swipeButton]"
                 withDictionary:constraints];
-    [self addVisualConstraints:@"V:[serialButton]-15-[timeoutButton]-20-[_readerStatus]-|"
+    [self addVisualConstraints:@"V:[_messageLabel]-15-[_chargeButton]-15-[serialButton]-15-[timeoutButton]-20-[_readerStatus]-|"
                 withDictionary:constraints];
     [self addVisualConstraints:@"|-[headerLabel]-|" withDictionary:NSDictionaryOfVariableBindings(headerLabel)];
     [self addVisualConstraints:@"|-[versionLabel]-|" withDictionary:NSDictionaryOfVariableBindings(versionLabel)];
     [self addVisualConstraints:@"|-[swipeButton]-|" withDictionary:NSDictionaryOfVariableBindings(swipeButton)];
     [self addVisualConstraints:@"|-[serialButton]-|" withDictionary:NSDictionaryOfVariableBindings(serialButton)];
-    [self addVisualConstraints:@"|-30-[_customView]-30-|" withDictionary:NSDictionaryOfVariableBindings(_customView)];
-    [self addVisualConstraints:@"|-30-[_expirationDate]-[_cvv]-30-|"
-                withDictionary:NSDictionaryOfVariableBindings(_expirationDate, _cvv)];
     [self addVisualConstraints:@"|-[_nameLabel]-|" withDictionary:NSDictionaryOfVariableBindings(_nameLabel)];
     [self addVisualConstraints:@"|-[_numberLabel]-|" withDictionary:NSDictionaryOfVariableBindings(_numberLabel)];
     [self addVisualConstraints:@"|-[_messageLabel]-|" withDictionary:NSDictionaryOfVariableBindings(_messageLabel)];
+    [self addVisualConstraints:@"|-[_chargeButton]-|" withDictionary:NSDictionaryOfVariableBindings(_chargeButton)];
     [self addVisualConstraints:@"[_timeoutText(45)]-[timeoutButton]"
                 withDictionary:NSDictionaryOfVariableBindings(_timeoutText, timeoutButton)];
     [self addVisualConstraints:@"|-[_readerStatus]-|" withDictionary:NSDictionaryOfVariableBindings(_readerStatus)];
     
     [self addEqualConstraint:NSLayoutAttributeCenterY from:_timeoutText to:timeoutButton];
-    [self addEqualConstraint:NSLayoutAttributeCenterY from:_cvv to:_expirationDate];
-    [self addEqualConstraint:NSLayoutAttributeWidth from:_cvv to:_expirationDate];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:timeoutButton
                                                           attribute:NSLayoutAttributeCenterX
                                                           relatedBy:NSLayoutRelationEqual
@@ -232,10 +222,14 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
                                                                       options:0
                                                                       metrics:nil
                                                                         views:NSDictionaryOfVariableBindings(_nameLabel, _numberLabel)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_numberLabel]-30-[_messageLabel]"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:NSDictionaryOfVariableBindings(_messageLabel, _numberLabel)]];
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_numberLabel]-30-[_messageLabel]"
+//                                                                      options:0
+//                                                                      metrics:nil
+//                                                                        views:NSDictionaryOfVariableBindings(_messageLabel, _numberLabel)]];
+    
+    _paymentView = [[CFTPaymentView alloc] initWithFrame:CGRectMake(15, 150, 240, 45)];
+    [_paymentView useFont:[UIFont fontWithName:kDefaultFont size:17]];
+    [self.view addSubview:_paymentView];
 }
 
 #pragma mark - Private Methods
@@ -257,6 +251,18 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
                                                                       options:0
                                                                       metrics:0
                                                                         views:dictionary]];
+}
+
+- (void)chargeButtonPressed:(id)sender {
+    
+    _card = [_paymentView generateCard];
+    [self chargeCard];
+}
+
+- (void)dismissKeyboard {
+    
+    [_paymentView resignAll];
+    [_timeoutText resignFirstResponder];
 }
 
 - (void)swipeCard:(id)sender {
@@ -282,6 +288,20 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
     [_cardReader swipeTimeoutDuration:[_timeoutText.text integerValue]];
 }
 
+- (void)chargeCard {
+    
+    NSDictionary *paymentInfo = @{@"amount":[NSDecimalNumber decimalNumberWithString:@"1.00"],
+                                  @"currency": @"USD",
+                                  @"description": @"Description"};
+    [_card chargeCardWithParameters:paymentInfo
+                            success:^(CFTCharge *charge) {
+                                [_messageLabel setText:[NSString stringWithFormat:@"Successfully charged: %@", charge]];
+                            }
+                            failure:^(NSError *error) {
+                                [self displayError:error];
+                            }];
+}
+
 #pragma mark - Reader Delegate
 
 - (void)readerCardResponse:(CFTCard *)card withError:(NSError *)error {
@@ -289,16 +309,7 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
     if (!error) {
         [_nameLabel setText:card.name];
         [_numberLabel setText:card.encryptedCardNumber];
-        NSDictionary *paymentInfo = @{@"amount":[NSDecimalNumber decimalNumberWithString:@"1.00"],
-                                      @"currency": @"USD",
-                                      @"description": @"Description"};
-        [card chargeCardWithParameters:paymentInfo
-                               success:^(CFTCharge *charge) {
-                                   [_messageLabel setText:[NSString stringWithFormat:@"Successfully charged: %@", charge]];
-                                }
-                                failure:^(NSError *error) {
-                                    [self displayError:error];
-                                }];
+        [self chargeCard];
     }
     else {
         [self displayError:error];

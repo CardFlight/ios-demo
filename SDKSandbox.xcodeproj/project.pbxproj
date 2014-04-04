@@ -40,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		434646A318592056001F9193 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		43A2F5AD18E9E228009705EB /* CFTPaymentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFTPaymentView.h; sourceTree = "<group>"; };
 		43AADC75183EBB2800D5D725 /* SDKSandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDKSandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43AADC78183EBB2800D5D725 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		43AADC7A183EBB2800D5D725 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -190,6 +191,7 @@
 				43B7E79F1864E2BA008B0DFE /* CFTCard.h */,
 				43B7E7A01864E2BA008B0DFE /* CFTCharge.h */,
 				43B7E7A11864E2BA008B0DFE /* CFTCustomEntryTextField.h */,
+				43A2F5AD18E9E228009705EB /* CFTPaymentView.h */,
 				43B7E7A21864E2BA008B0DFE /* CFTCustomView.h */,
 				43B7E7A31864E2BA008B0DFE /* CFTReader.h */,
 				43B7E7A41864E2BA008B0DFE /* libCardFlightLibrary.a */,
