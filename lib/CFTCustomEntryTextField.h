@@ -25,9 +25,10 @@
  * The following public methods allow customization of the manual
  * entry textfields while preventing direct access to the contents.
  * You can set values but cannot read them.
- * Auto layout is now supported by adding constraints to the CFTCustomView
+ * Currently, auto layout is not supported.
  */
 
+- (void)customFieldFrame:(CGRect)newFrame;
 - (void)customFieldText:(NSString *)newText;
 - (void)customFieldTag:(NSInteger)newTag;
 - (void)customFieldBackground:(UIImage *)newBackground;
@@ -46,12 +47,5 @@
 - (void)customFieldReturnKeyType:(UIReturnKeyType)newReturnKeyType;
 - (void)customFieldBecomeFirstResponder;
 - (void)customFieldResignFirstResponder;
-
-// ******************** DEPRECATED ********************
-
-/**
-  * THIS WILL BE REMOVED IN A LATER RELEASE
- */
-- (void)customFieldFrame:(CGRect)newFrame;
 
 @end
