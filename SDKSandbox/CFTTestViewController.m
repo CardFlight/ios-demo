@@ -12,7 +12,7 @@
 #import "CardFlight.h"
 #import "CFTPaymentView.h"
 
-@interface CFTTestViewController () <readerDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate> {
+@interface CFTTestViewController () <CFTReaderDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate> {
     
     CGFloat animatedDistance;
 }
@@ -227,7 +227,7 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
 //                                                                      metrics:nil
 //                                                                        views:NSDictionaryOfVariableBindings(_messageLabel, _numberLabel)]];
     
-    _paymentView = [[CFTPaymentView alloc] initWithFrame:CGRectMake(15, 150, 240, 45)];
+    _paymentView = [[CFTPaymentView alloc] initWithFrame:CGRectMake(15, 150, 290, 45)];
     [_paymentView useFont:[UIFont fontWithName:kDefaultFont size:17]];
     [self.view addSubview:_paymentView];
 }
@@ -307,6 +307,7 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
 - (void)readerCardResponse:(CFTCard *)card withError:(NSError *)error {
     
     if (!error) {
+//        CFTCard *cardCopy = [card copyWithZone:nil];
         [_nameLabel setText:card.name];
         [_numberLabel setText:card.encryptedCardNumber];
         [self chargeCard];
