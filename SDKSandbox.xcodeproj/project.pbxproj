@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		434646A418592056001F9193 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434646A318592056001F9193 /* ExternalAccessory.framework */; };
+		434A27A918FF1B7700A4D5F3 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 434A27A618FF1B7700A4D5F3 /* SVProgressHUD.bundle */; };
+		434A27AA18FF1B7800A4D5F3 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 434A27A818FF1B7700A4D5F3 /* SVProgressHUD.m */; };
 		43AADC79183EBB2800D5D725 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADC78183EBB2800D5D725 /* Foundation.framework */; };
 		43AADC7B183EBB2800D5D725 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADC7A183EBB2800D5D725 /* CoreGraphics.framework */; };
 		43AADC7D183EBB2800D5D725 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43AADC7C183EBB2800D5D725 /* UIKit.framework */; };
@@ -40,6 +42,10 @@
 
 /* Begin PBXFileReference section */
 		434646A318592056001F9193 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		434A27A518FF1B7700A4D5F3 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		434A27A618FF1B7700A4D5F3 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		434A27A718FF1B7700A4D5F3 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		434A27A818FF1B7700A4D5F3 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		43A2F5AD18E9E228009705EB /* CFTPaymentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFTPaymentView.h; sourceTree = "<group>"; };
 		43AADC75183EBB2800D5D725 /* SDKSandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDKSandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43AADC78183EBB2800D5D725 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -104,9 +110,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		434A27A418FF1B7700A4D5F3 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				434A27A518FF1B7700A4D5F3 /* SVProgressHUD-Prefix.pch */,
+				434A27A618FF1B7700A4D5F3 /* SVProgressHUD.bundle */,
+				434A27A718FF1B7700A4D5F3 /* SVProgressHUD.h */,
+				434A27A818FF1B7700A4D5F3 /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
 		43AADC6C183EBB2800D5D725 = {
 			isa = PBXGroup;
 			children = (
+				434A27A418FF1B7700A4D5F3 /* SVProgressHUD */,
 				43B7E79A1864E2BA008B0DFE /* lib */,
 				43AADC7E183EBB2800D5D725 /* SDKSandbox */,
 				43AADC97183EBB2800D5D725 /* SDKSandboxTests */,
@@ -276,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43AADC83183EBB2800D5D725 /* InfoPlist.strings in Resources */,
+				434A27A918FF1B7700A4D5F3 /* SVProgressHUD.bundle in Resources */,
 				43AADC8B183EBB2800D5D725 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43AADC89183EBB2800D5D725 /* CFTAppDelegate.m in Sources */,
+				434A27AA18FF1B7800A4D5F3 /* SVProgressHUD.m in Sources */,
 				43AADC85183EBB2800D5D725 /* main.m in Sources */,
 				43AADCB7183EBB4D00D5D725 /* CFTTestViewController.m in Sources */,
 			);

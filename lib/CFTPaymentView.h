@@ -9,13 +9,22 @@
 #import <UIKit/UIKit.h>
 @class CFTCard;
 
-@interface CFTPaymentView : UIView
+@protocol CFTPaymentViewDelegate <NSObject>
+
+@required
 
 /**
- * Takes the data from the custom manual entry textfields
- * and returns a CFTCard object.
+ * Required protocol method that gets called whenever the
+ * manual entry receives enough valid input to generate a
+ * credit card object.
  */
-- (CFTCard *)generateCard;
+- (void)keyedCardResponse:(CFTCard *)card;
+
+@end
+
+@interface CFTPaymentView : UIView
+
+@property (nonatomic, weak) id<CFTPaymentViewDelegate> delegate;
 
 /**
  * Sends the custom manual entry textfields the resignFirstResponder
@@ -51,5 +60,14 @@
  * Passing nil reenables the default border color.
  */
 - (void)useBorderColor:(UIColor *)newColor;
+
+// ******************** DEPRECATED ********************
+
+/**
+ * Takes the data from the custom manual entry textfields
+ * and returns a CFTCard object.
+ * THIS WILL BE REMOVED IN A LATER RELEASE
+ */
+- (CFTCard *)generateCard;
 
 @end

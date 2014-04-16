@@ -11,6 +11,7 @@
 #import "CFTCard.h"
 #import "CardFlight.h"
 #import "CFTPaymentView.h"
+#import "SVProgressHUD.h"
 
 @interface CFTTestViewController () <CFTReaderDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate> {
     
@@ -68,6 +69,9 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:0.200f alpha:1.000]];
+    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
     
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [singleTap setNumberOfTapsRequired:1];
@@ -179,7 +183,7 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
     [self.view addSubview:_readerStatus];
     [self.view addSubview:_chargeButton];
     
-    NSDictionary *constraints = NSDictionaryOfVariableBindings(headerLabel, versionLabel, swipeButton, serialButton, timeoutButton, _readerStatus, _chargeButton, _messageLabel);
+    NSDictionary *constraints = NSDictionaryOfVariableBindings(headerLabel, versionLabel, swipeButton, serialButton, timeoutButton, _readerStatus, _chargeButton, _messageLabel, _nameLabel, _numberLabel);
     if ([self respondsToSelector:@selector(topLayoutGuide)]) {
         id topGuide = self.topLayoutGuide;
         [self addVisualConstraints:@"V:[topGuide]-[headerLabel]"
@@ -191,7 +195,7 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
     
     [self addVisualConstraints:@"V:[headerLabel]-12-[versionLabel]-15-[swipeButton]"
                 withDictionary:constraints];
-    [self addVisualConstraints:@"V:[_messageLabel]-15-[_chargeButton]-15-[serialButton]-15-[timeoutButton]-20-[_readerStatus]-|"
+    [self addVisualConstraints:@"V:[_nameLabel]-[_numberLabel]-[_messageLabel]-15-[_chargeButton]-15-[serialButton]-15-[timeoutButton]-20-[_readerStatus]-|"
                 withDictionary:constraints];
     [self addVisualConstraints:@"|-[headerLabel]-|" withDictionary:NSDictionaryOfVariableBindings(headerLabel)];
     [self addVisualConstraints:@"|-[versionLabel]-|" withDictionary:NSDictionaryOfVariableBindings(versionLabel)];
@@ -213,19 +217,6 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
                                                           attribute:NSLayoutAttributeCenterX
                                                          multiplier:1
                                                            constant:22]];
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[serialButton]-30-[_nameLabel]"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:NSDictionaryOfVariableBindings(_nameLabel, serialButton)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_nameLabel]-10-[_numberLabel]"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:NSDictionaryOfVariableBindings(_nameLabel, _numberLabel)]];
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_numberLabel]-30-[_messageLabel]"
-//                                                                      options:0
-//                                                                      metrics:nil
-//                                                                        views:NSDictionaryOfVariableBindings(_messageLabel, _numberLabel)]];
     
     _paymentView = [[CFTPaymentView alloc] initWithFrame:CGRectMake(15, 150, 290, 45)];
     [_paymentView useFont:[UIFont fontWithName:kDefaultFont size:17]];
@@ -290,16 +281,21 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
 
 - (void)chargeCard {
     
-    NSDictionary *paymentInfo = @{@"amount":[NSDecimalNumber decimalNumberWithString:@"1.00"],
-                                  @"currency": @"USD",
-                                  @"description": @"Description"};
-    [_card chargeCardWithParameters:paymentInfo
-                            success:^(CFTCharge *charge) {
-                                [_messageLabel setText:[NSString stringWithFormat:@"Successfully charged: %@", charge]];
-                            }
-                            failure:^(NSError *error) {
-                                [self displayError:error];
-                            }];
+    if (_card) {
+        [SVProgressHUD showWithStatus:@"Charging" maskType:SVProgressHUDMaskTypeClear];
+        NSDictionary *paymentInfo = @{@"amount":[NSDecimalNumber decimalNumberWithString:@"1.00"],
+                                      @"currency": @"USD",
+                                      @"description": @"Description"};
+        [_card chargeCardWithParameters:paymentInfo
+                                success:^(CFTCharge *charge) {
+                                    [SVProgressHUD showSuccessWithStatus:@"Success"];
+                                    [_messageLabel setText:[NSString stringWithFormat:@"Successfully charged: %@", charge]];
+                                }
+                                failure:^(NSError *error) {
+                                    [SVProgressHUD showErrorWithStatus:@"Failed"];
+                                    [self displayError:error];
+                                }];
+    }
 }
 
 #pragma mark - Reader Delegate
@@ -307,10 +303,11 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
 - (void)readerCardResponse:(CFTCard *)card withError:(NSError *)error {
     
     if (!error) {
-//        CFTCard *cardCopy = [card copyWithZone:nil];
         [_nameLabel setText:card.name];
         [_numberLabel setText:card.encryptedCardNumber];
-        [self chargeCard];
+        _card = card;
+        
+//        [self chargeCard];
     }
     else {
         [self displayError:error];
