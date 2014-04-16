@@ -26,7 +26,7 @@ typedef enum CFCardType {
     JCB
 } CFCardType;
 
-@interface CFTCard : CFTAPIResource
+@interface CFTCard : CFTAPIResource <NSCopying>
 
 @property (nonatomic, readonly) NSString *last4;
 @property (nonatomic) NSString *name;

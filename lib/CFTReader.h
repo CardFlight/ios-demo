@@ -16,7 +16,7 @@
 #import <UIKit/UIKit.h>
 @class CFTCard;
 
-@protocol readerDelegate <NSObject>
+@protocol CFTReaderDelegate <NSObject>
 
 @required
 
@@ -76,7 +76,7 @@
 
 @interface CFTReader : NSObject
 
-@property (nonatomic, weak) id<readerDelegate> delegate;
+@property (nonatomic, weak) id<CFTReaderDelegate> delegate;
 
 /**
  * Create a new CFTReader and have it attempt to connect to the 
