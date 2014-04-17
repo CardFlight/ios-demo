@@ -13,7 +13,7 @@
 #import "CFTPaymentView.h"
 #import "SVProgressHUD.h"
 
-@interface CFTTestViewController () <CFTReaderDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate> {
+@interface CFTTestViewController () <CFTReaderDelegate, CFTPaymentViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate> {
     
     CGFloat animatedDistance;
 }
@@ -219,6 +219,7 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
                                                            constant:22]];
     
     _paymentView = [[CFTPaymentView alloc] initWithFrame:CGRectMake(15, 150, 290, 45)];
+    [_paymentView setDelegate:self];
     [_paymentView useFont:[UIFont fontWithName:kDefaultFont size:17]];
     [self.view addSubview:_paymentView];
 }
@@ -246,7 +247,6 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
 
 - (void)chargeButtonPressed:(id)sender {
     
-    _card = [_paymentView generateCard];
     [self chargeCard];
 }
 
@@ -295,7 +295,16 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
                                     [SVProgressHUD showErrorWithStatus:@"Failed"];
                                     [self displayError:error];
                                 }];
+    } else {
+        [_messageLabel setText:@"Error - No card to charge"];
     }
+}
+
+#pragma mark - Payment View Delegate
+
+- (void)keyedCardResponse:(CFTCard *)card {
+    
+    _card = card;
 }
 
 #pragma mark - Reader Delegate
@@ -306,8 +315,6 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
         [_nameLabel setText:card.name];
         [_numberLabel setText:card.encryptedCardNumber];
         _card = card;
-        
-//        [self chargeCard];
     }
     else {
         [self displayError:error];
