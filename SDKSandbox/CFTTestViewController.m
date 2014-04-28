@@ -221,6 +221,7 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
     _paymentView = [[CFTPaymentView alloc] initWithFrame:CGRectMake(15, 150, 290, 45)];
     [_paymentView setDelegate:self];
     [_paymentView useFont:[UIFont fontWithName:kDefaultFont size:17]];
+    [_paymentView useKeyboardAppearance:UIKeyboardAppearanceDark];
     [self.view addSubview:_paymentView];
 }
 
