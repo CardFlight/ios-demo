@@ -18,10 +18,6 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
-	<key>UISupportedExternalAccessoryProtocols</key>
-	<array>
-		<string>com.idtechproducts.reader</string>
-	</array>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -32,11 +28,20 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UISupportedExternalAccessoryProtocols</key>
+	<array>
+		<string>com.idtechproducts.reader</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 </dict>
 </plist>
