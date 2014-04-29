@@ -1,4 +1,4 @@
 sdk-sandbox
 ===========
 
-Private repo for internal testing of the iOS SDK
+Public repo for testing of the iOS SDK
