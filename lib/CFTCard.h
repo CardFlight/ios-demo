@@ -29,6 +29,7 @@ typedef enum CFCardType {
 @interface CFTCard : CFTAPIResource <NSCopying>
 
 @property (nonatomic, readonly) NSString *last4;
+@property (nonatomic) CFCardType cardType;
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *encryptedCardNumber;
 @property (nonatomic) NSString *cardToken;
@@ -58,7 +59,6 @@ typedef enum CFCardType {
 
 @property (nonatomic) NSInteger expirationMonth;
 @property (nonatomic) NSInteger expirationYear;
-@property (nonatomic) CFCardType cardType;
 
 /**
  * Convenience method to check that the credit card number is formatted

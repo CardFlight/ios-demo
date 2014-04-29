@@ -33,6 +33,12 @@
 - (void)resignAll;
 
 /**
+ * Assigns a UIKeyboardAppearance to the custom manual entry textfields.
+ * UIKeyboardAppearanceDefault is used by default.
+ */
+- (void)useKeyboardAppearance:(UIKeyboardAppearance)keyboardAppearance;
+
+/**
  * Assigns a font to use for the custom manual entry textfields.
  * Uses bold system font size 17 by default.
  * Passing nil reenables the default font.
@@ -49,7 +55,7 @@
 
 /**
  * Assigns a color to use for the font when the validation fails.
- * A red color (253,0,17) is used by default.
+ * A red color (253, 0, 17) is used by default.
  * Passing nil reenables the default alert font color.
  */
 - (void)useFontAlertColor:(UIColor *)newColor;
