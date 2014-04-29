@@ -38,11 +38,9 @@
  * test charges with CardFlight. The information can be found
  * in your developer dashboard at getcardflight.com
 */
-static NSString *API_KEY = @"eed212eed2dd88499950ade2425f9881";
-static NSString *ACCOUNT_TOKEN = @"acc_f6c0bba813e64bf7";
 
-//static NSString *API_KEY = @"PUT_YOUR_API_KEY_HERE";
-//static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
+static NSString *API_KEY = @"PUT_YOUR_API_KEY_HERE";
+static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
 
 
 
