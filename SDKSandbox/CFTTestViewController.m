@@ -46,7 +46,6 @@ static NSString *API_KEY = @"PUT_YOUR_API_KEY_HERE";
 static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
 
 
-
 static NSString *kDefaultFont = @"Avenir";
 
 @implementation CFTTestViewController
@@ -73,8 +72,6 @@ static NSString *kDefaultFont = @"Avenir";
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [singleTap setNumberOfTapsRequired:1];
     [self.view addGestureRecognizer:singleTap];
-    
-    [[NSUserDefaults standardUserDefaults] setObject:@"https://staging.api.getcardflight.com/" forKey:@"ROOT_API_URL"];
     
     [[CardFlight sharedInstance] setApiToken:API_KEY
                                 accountToken:ACCOUNT_TOKEN];
@@ -328,7 +325,9 @@ static NSString *kDefaultFont = @"Avenir";
         [SVProgressHUD showWithStatus:@"Charging" maskType:SVProgressHUDMaskTypeClear];
         NSDictionary *paymentInfo = @{@"amount":amount,
                                       @"currency": @"USD",
-                                      @"description": @"Description"};
+                                      @"description": @"Description",
+                                      @"merchant_id": @"blue_ladders_store",
+                                      @"service_fee": [NSDecimalNumber decimalNumberWithDecimal:[@5 decimalValue]]};
         [_card chargeCardWithParameters:paymentInfo
                                 success:^(CFTCharge *charge) {
                                     [SVProgressHUD showSuccessWithStatus:@"Success"];

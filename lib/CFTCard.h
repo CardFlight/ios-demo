@@ -42,6 +42,8 @@ typedef enum CFCardType {
  *      description - Optional - NSString of charge description
  *      customer_id - Optional - NSString of customer ID being charged
  *      currency - Optional - NSString of currency code, defaults to USD
+ *      merchant_id - Optional - NSString of Braintree submerchant ID
+ *      transaction_fee - Optional - NSDecimalNumber containing the fee to charge
  */
 - (void)chargeCardWithParameters:(NSDictionary *)chargeDictionary
                          success:(void(^)(CFTCharge *charge))success
