@@ -65,6 +65,7 @@
 
 @end
 
+__attribute__((deprecated))
 @interface CFTCustomView : UIView
 
 @property (nonatomic, weak) id<customEntryDelegate> delegate;

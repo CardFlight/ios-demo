@@ -1,58 +1,18 @@
 /*
  *****************************************************************
- * CardFlight.h
+ * CFTCardFlight.h
  *
- * A CardFlight singleton is created to maintain session-wide
- * settings and information.
+ * Master header file for CardFlight SDK. This single file can
+ * be included and all supporting headers will be available in a
+ * project.
  *
- * All additional functionality is supplied by the individual class
- * related to the function that you want to perform. Only the
- * classes required need to be included in a file.
- *
- * Copyright (c) 2013 CardFlight Inc. All rights reserved.
+ * Copyright (c) 2014 CardFlight Inc. All rights reserved.
  *****************************************************************
  */
-#import <Foundation/Foundation.h>
 
-@interface CardFlight : NSObject
-
-/**
- * Accessor for the CardFlight singleton
- */
-+ (CardFlight *)sharedInstance;
-
-/**
- * Convenience method to return the current version number of the SDK
- */
-- (NSString *)SDKVersion;
-
-/**
- * Convenience method to return the current API token
- */
-- (NSString *)getApiToken;
-
-/**
- * Convenience method to return the current Account token
- */
-- (NSString *)getAccountToken;
-
-/**
- * Sets the API account token for the entire session. This only
- * needs to be called once, most likely in applicationDidFinishLaunching
- */
-- (void)setApiToken:(NSString *)cardFlightApiToken
-       accountToken:(NSString *)cardFlightAccountToken;
-
-/**
- * Pass YES to enable developer logging mode to the console.
- * This should always be set to NO for release
- */
-- (void)setLogging:(BOOL)logging;
-
-/**
- * Pass YES to this method to enable lightning connector mode
- * for the attache reader. The default is NO
- */
-- (void)setAttacheReader:(BOOL)isAttache;
-
-@end
+#import "CFTSessionManager.h"
+#import "CFTPaymentView.h"
+#import "CFTBaseReader.h"
+#import "CFTReader.h"
+#import "CFTCard.h"
+#import "CFTCharge.h"

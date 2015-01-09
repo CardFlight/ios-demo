@@ -19,6 +19,7 @@
 
 #import <UIKit/UIKit.h>
 
+__attribute__((deprecated))
 @interface CFTCustomEntryTextField : UIView
 
 /**

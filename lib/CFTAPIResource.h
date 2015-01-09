@@ -10,7 +10,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "CardFlight.h"
+#import "CFTSessionManager.h"
 
 @interface CFTAPIResource : NSObject
 

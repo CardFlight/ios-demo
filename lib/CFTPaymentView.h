@@ -27,10 +27,21 @@
 @property (nonatomic, weak) id<CFTPaymentViewDelegate> delegate;
 
 /**
+ * Constructor with option to prompt for a zip code in manual entry
+ */
+- (instancetype)initWithFrame:(CGRect)frame enableZip:(BOOL)zipEnabled;
+
+/**
  * Sends the custom manual entry textfields the resignFirstResponder
  * message.
  */
 - (void)resignAll;
+
+/**
+ * Clears all the input from the textfields and returns it to its
+ * initial state.
+ */
+- (void)clearInput;
 
 /**
  * Assigns a UIKeyboardAppearance to the custom manual entry textfields.
@@ -74,6 +85,6 @@
  * and returns a CFTCard object.
  * THIS WILL BE REMOVED IN A LATER RELEASE
  */
-- (CFTCard *)generateCard;
+- (CFTCard *)generateCard __attribute__((deprecated));
 
 @end

@@ -73,10 +73,9 @@ static NSString *kDefaultFont = @"Avenir";
     [singleTap setNumberOfTapsRequired:1];
     [self.view addGestureRecognizer:singleTap];
     
-    [[CardFlight sharedInstance] setApiToken:API_KEY
+    [[CFTSessionManager sharedInstance] setApiToken:API_KEY
                                 accountToken:ACCOUNT_TOKEN];
-    [[CardFlight sharedInstance] setAttacheReader:NO];
-    [[CardFlight sharedInstance] setLogging:NO];
+    [[CFTSessionManager sharedInstance] setLogging:NO];
     
     _cardReader = [[CFTReader alloc] initAndConnect];
     [_cardReader setDelegate:self];
@@ -91,7 +90,7 @@ static NSString *kDefaultFont = @"Avenir";
     UILabel *versionLabel = [[UILabel alloc] init];
     [versionLabel setTextAlignment:NSTextAlignmentCenter];
     [versionLabel setText:[NSString stringWithFormat:@"SDK %@     iOS %@",
-                           [[CardFlight sharedInstance] SDKVersion],
+                           [[CFTSessionManager sharedInstance] SDKVersion],
                            [[UIDevice currentDevice] systemVersion]]];
     [versionLabel setFont:defaultFont];
     
@@ -361,7 +360,7 @@ static NSString *kDefaultFont = @"Avenir";
     [_readerStatus setText:@"CONNECTED"];
     if (!error) {
         [_nameLabel setText:card.name];
-        [_numberLabel setText:card.encryptedCardNumber];
+        [_numberLabel setText:card.encryptedSwipedCardNumber];
         _card = card;
         [_chargeButton setEnabled:YES];
         [_tokenizeButton setEnabled:YES];
