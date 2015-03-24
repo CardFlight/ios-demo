@@ -10,9 +10,9 @@
  *****************************************************************
  */
 
+#import "CFTEnum.h"
 #import "CFTSessionManager.h"
 #import "CFTPaymentView.h"
-#import "CFTBaseReader.h"
 #import "CFTReader.h"
 #import "CFTCard.h"
 #import "CFTCharge.h"

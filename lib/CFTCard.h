@@ -14,29 +14,23 @@
  */
 
 #import "CFTAPIResource.h"
+#import "CFTEnum.h"
 @class CFTCharge;
-
-typedef enum CFCardType {
-    UNKNOWN,
-    VISA,
-    MASTERCARD,
-    AMEX,
-    DINERS,
-    DISCOVER,
-    JCB
-} CFCardType;
 
 @interface CFTCard : CFTAPIResource <NSCopying>
 
 @property (nonatomic, readonly) NSString *last4;
-@property (nonatomic) CFCardType cardType;
-@property (nonatomic) NSString *name;
-@property (nonatomic) NSString *encryptedSwipedCardNumber;
-@property (nonatomic) NSData *encryptedSwipeData;
-@property (nonatomic) NSString *cardToken;
+@property (nonatomic, readonly) NSString *expirationMonth;
+@property (nonatomic, readonly) NSString *expirationYear;
+@property (nonatomic) CFTCardProcessor cardType;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *encryptedSwipedCardNumber;
+@property (nonatomic, copy) NSData *encryptedSwipeData;
+@property (nonatomic, copy) NSString *cardToken;
 
-/**
- * Method to charge a card with the details in the chargeDictionary
+/*
+ * Method to charge a card with the details in the chargeDictionary.
+ * Legacy method for swiped cards, current method for manually entered cards.
  *
  * chargeDictionary parameters:
  *      amount - NSDecimalNumber containing amount to charge
@@ -50,8 +44,8 @@ typedef enum CFCardType {
                          success:(void(^)(CFTCharge *charge))success
                          failure:(void(^)(NSError *error))failure;
 
-/**
- * Method to authorize a card for later capture
+/*
+ * Method to authorize a card for later capture.
  *
  * authorizeDictionary parameters:
  *      amount - NSDecimalNumber containing amount to charge
@@ -65,7 +59,7 @@ typedef enum CFCardType {
                             success:(void(^)(CFTCharge *charge))success
                             failure:(void(^)(NSError *error))failure;
 
-/**
+/*
  * Method to create a card token that can be saved and used later.
  * On success the cardToken variable contains a value that can
  * be stored and used later.
@@ -74,40 +68,9 @@ typedef enum CFCardType {
                         failure:(void(^)(NSError *error))failure;
 
 
-/**
+/*
  * Internal use only
  */
 - (NSDictionary *)dictionaryData:(NSData *)parameter;
-
-// ******************** DEPRECATED ********************
-
-@property (nonatomic) NSInteger expirationMonth;
-@property (nonatomic) NSInteger expirationYear;
-
-/**
- * Convenience method to check that the credit card number is formatted
- * properly using Luhn validation.
- * Client-side validation only, it checks that the format is valid, not
- * that the value is correct.
- * THIS WILL BE REMOVED IN A LATER RELEASE
- */
-- (BOOL)isNumberValid __attribute__((deprecated));
-
-/**
- * Convenience method to check that the expiration date is formatted properly
- * and is not in the past.
- * Client-side validation only, it checks that the format is valid, not
- * that the value is correct.
- * THIS WILL BE REMOVED IN A LATER RELEASE
- */
-- (BOOL)isExpirationDateValid __attribute__((deprecated));
-
-/**
- * Convenience method to check if the CVV number is formatted properly
- * Client-side validation only, it checks that the format is valid, not
- * that the value is correct.
- * THIS WILL BE REMOVED IN A LATER RELEASE
- */
-- (BOOL)isCVVValid __attribute__((deprecated));
 
 @end

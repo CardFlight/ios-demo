@@ -16,34 +16,42 @@
 
 @interface CFTSessionManager : NSObject
 
-/**
+/*
  * Accessor for the CardFlight singleton
+ *
+ * Added in 1.7
  */
 + (CFTSessionManager *)sharedInstance;
 
-/**
+/*
  * Convenience method to return the current version number of the SDK
+ *
+ * Added in 1.0
  */
 - (NSString *)SDKVersion;
 
-/**
+/*
  * Convenience method to return the current API token
+ *
+ * Added in 2.0
  */
-- (NSString *)getApiToken;
+- (NSString *)apiToken;
 
-/**
+/*
  * Convenience method to return the current Account token
+ *
+ * Added in 2.0
  */
-- (NSString *)getAccountToken;
+- (NSString *)accountToken;
 
-/**
+/*
  * Sets the API account token for the entire session. This only
  * needs to be called once, most likely in applicationDidFinishLaunching
  */
 - (void)setApiToken:(NSString *)cardFlightApiToken
        accountToken:(NSString *)cardFlightAccountToken;
 
-/**
+/*
  * Pass YES to enable developer logging mode to the console.
  * This should always be set to NO for release
  */
@@ -51,10 +59,20 @@
 
 // ******************** DEPRECATED ********************
 
-/**
- * Pass YES to this method to enable lightning connector mode
- * for the attache reader. The default is NO
+/*
+ * Convenience method to return the current API token
+ *
+ * THIS WILL BE REMOVED IN A LATER RELEASE
+ * Deprecated in 2.0, please use apiToken instead.
  */
-- (void)setAttacheReader:(BOOL)isAttache __attribute__((deprecated));
+- (NSString *)getApiToken __deprecated;
+
+/*
+ * Convenience method to return the current Account token
+ *
+ * THIS WILL BE REMOVED IN A LATER RELEASE
+ * Deprecated in 2.0, please use accountToken instead.
+ */
+- (NSString *)getAccountToken __deprecated;
 
 @end

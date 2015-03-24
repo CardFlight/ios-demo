@@ -7,7 +7,7 @@
 //
 
 #import "CFTAppDelegate.h"
-#import "CFTTestViewController.h"
+#import "CFTMainViewController.h"
 
 @implementation CFTAppDelegate
 
@@ -19,7 +19,7 @@
         [self.window setTintColor:[UIColor colorWithRed:0.075f green:0.443f blue:0.812f alpha:1.000f]];
     }
     
-    CFTTestViewController *vc = [[CFTTestViewController alloc] init];
+    CFTMainViewController *vc = [[CFTMainViewController alloc] initWithNibName:@"MainView" bundle:nil];
     [_window setRootViewController:vc];
     
     self.window.backgroundColor = [UIColor whiteColor];

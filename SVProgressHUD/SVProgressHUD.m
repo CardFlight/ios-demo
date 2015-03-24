@@ -205,9 +205,9 @@ static const CGFloat SVProgressHUDParallaxDepthPoints = 10;
         
         SVProgressHUDBackgroundColor = [UIColor whiteColor];
         SVProgressHUDForegroundColor = [UIColor blackColor];
-        SVProgressHUDFont = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
-        SVProgressHUDSuccessImage = [[UIImage imageNamed:@"SVProgressHUD.bundle/success"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        SVProgressHUDErrorImage = [[UIImage imageNamed:@"SVProgressHUD.bundle/error"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//        SVProgressHUDFont = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+//        SVProgressHUDSuccessImage = [[UIImage imageNamed:@"SVProgressHUD.bundle/success"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//        SVProgressHUDErrorImage = [[UIImage imageNamed:@"SVProgressHUD.bundle/error"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         SVProgressHUDRingThickness = 4;
     }
 	
