@@ -54,6 +54,8 @@
 
 /*
  * Void a charge and post to the CardFlight servers
+ *
+ * Added in 1.5
  */
 - (void)voidChargeWithSuccess:(void(^)())success
                       failure:(void(^)(NSError *error))failure;

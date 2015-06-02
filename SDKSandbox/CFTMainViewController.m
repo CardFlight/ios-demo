@@ -44,8 +44,6 @@
 static NSString *API_KEY = @"PUT_YOUR_API_KEY_HERE";
 static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
 
-
-
 @implementation CFTMainViewController
 
 - (void)viewDidLoad {
@@ -71,7 +69,7 @@ static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
     [[CFTSessionManager sharedInstance] setApiToken:API_KEY
                                        accountToken:ACCOUNT_TOKEN];
     
-    self.reader = [[CFTReader alloc] initWithReader:1];
+    self.reader = [[CFTReader alloc] initWithReader:0];
     self.reader.delegate = self;
     
     self.paymentView = [[CFTPaymentView alloc] initWithFrame:CGRectZero];
@@ -147,9 +145,7 @@ static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
                                                    UITextField *amount = alert.textFields.firstObject;
                                                    NSString *cleanCentString = [[amount.text componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
                                                    NSDecimalNumber *decimal = [[NSDecimalNumber decimalNumberWithString:cleanCentString] decimalNumberByMultiplyingByPowerOf10:-2];
-                                                   [self.reader beginTransactionWithAmount:decimal
-                                                                       andChargeDictionary:nil];
-                                                   self.swipeStatus.text = @"Swipe Now";
+                                                   [self chargeCard:self.swipedCard withAmount:decimal];
                                                }];
     [alert addAction:cancel];
     [alert addAction:ok];
@@ -270,8 +266,8 @@ static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
 
 - (void)startTransactionPressed:(UIButton *)sender {
     
-    self.swipeStatus.text = @"Enter Amount";
-    [self promptForChargeAmount];
+    [self.reader beginSwipe];
+    self.swipeStatus.text = @"Swipe Now";
 }
 
 - (void)readerTypePressed:(UIButton *)sender {
@@ -303,6 +299,10 @@ static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
 
 #pragma mark - Reader Delegate
 
+- (void)transactionResult:(CFTCharge *)charge withError:(NSError *)error {
+    
+}
+
 - (void)readerNotDetected {
     
     self.readerStatus.text = @"Reader Not Detected";
@@ -317,39 +317,6 @@ static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
     } else {
         [self enableSwipeButtons:NO];
         self.swipeStatus.text = error.localizedDescription;
-    }
-}
-
-- (void)transactionResult:(CFTCharge *)charge withError:(NSError *)error {
-    
-    if (charge) {
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"CardFlight Demo"
-                                                                       message:[NSString stringWithFormat:@"Successfully charged: %@", [formatter stringFromNumber:charge.amount]]
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Okay"
-                                                     style:UIAlertActionStyleDefault
-                                                   handler:^(UIAlertAction *action){
-                                                       self.swipeStatus.text = @"Approved";
-                                                   }];
-        [alert addAction:ok];
-        [self presentViewController:alert
-                           animated:YES
-                         completion:nil];
-    } else {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"CardFlight Demo"
-                                                                       message:[NSString stringWithFormat:@"Error: %@", error.localizedDescription]
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Okay"
-                                                     style:UIAlertActionStyleDefault
-                                                   handler:^(UIAlertAction *action){
-                                                       self.swipeStatus.text = @"Declined";
-                                                   }];
-        [alert addAction:ok];
-        [self presentViewController:alert
-                           animated:YES
-                         completion:nil];
     }
 }
 
@@ -384,102 +351,6 @@ static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
     } else {
         self.readerStatus.text = @"Reader Error";
         self.readerError.text = error.localizedDescription;
-    }
-}
-
-- (void)emvAmountRequested {
-    
-//    [self.reader emvTransactionAmount:[NSDecimalNumber decimalNumberWithString:@"5.00"]];
-}
-
-- (void)emvMessage:(CFTEMVMessage)message {
-    
-    NSString *newMessage;
-    switch (message) {
-        case EMVMessage_AMOUNT_OK:
-            newMessage = @"Amount Ok";
-            break;
-        case EMVMessage_APPROVED:
-            newMessage = @"Approved";
-            break;
-        case EMVMessage_CALL_BANK:
-            newMessage = @"Call Your Bank";
-            break;
-        case EMVMessage_CARD_ERROR:
-            newMessage = @"Card Read Error";
-            break;
-        case EMVMessage_CLEAR_DISPLAY:
-            newMessage = @"";
-            break;
-        case EMVMessage_DECLINED:
-            newMessage = @"Declined";
-            break;
-        case EMVMessage_ENTER_AMOUNT:
-            newMessage = @"Enter Transaction Amount";
-            break;
-        case EMVMessage_ENTER_PIN:
-            newMessage = @"Enter PIN";
-            break;
-        case EMVMessage_INCORRECT_PIN:
-            newMessage = @"Incorrect PIN";
-            break;
-        case EMVMessage_INSERT_CARD:
-            newMessage = @"Insert Card";
-            break;
-        case EMVMessage_NOT_ACCEPTED:
-            newMessage = @"Card Not Accepted";
-            break;
-        case EMVMessage_ONLINE_REQUIRED:
-            newMessage = @"Online Auth Required";
-            break;
-        case EMVMessage_PIN_OK:
-            newMessage = @"PIN Accepted";
-            break;
-        case EMVMessage_PLEASE_WAIT:
-            newMessage = @"Please Wait";
-            break;
-        case EMVMessage_PRESENT_ONLY_ONE_CARD:
-            newMessage = @"Present Only One Card";
-            break;
-        case EMVMessage_PROCESSING:
-            newMessage = @"Processing";
-            break;
-        case EMVMessage_PROCESSING_ERROR:
-            newMessage = @"Processing Error";
-            break;
-        case EMVMessage_REMOVE_CARD:
-            newMessage = @"Remove Card";
-            break;
-        case EMVMessage_TRANSACTION_CANCELLED:
-            newMessage = @"Transaction Cancelled";
-            break;
-        case EMVMessage_TRY_AGAIN:
-            newMessage = @"Please Try Again";
-            break;
-        case EMVMessage_TRY_DIP_AGAIN:
-            newMessage = @"Please Dip Card Again";
-            break;
-        case EMVMessage_TRY_SWIPE_AGAIN:
-            newMessage = @"Please Swipe Card Again";
-            break;
-        case EMVMessage_UNKNOWN:
-            newMessage = @"Unknown Error";
-            break;
-        case EMVMessage_USE_CHIP_READER:
-            newMessage = @"Please Dip Card";
-            break;
-        case EMVMessage_USE_MAG_READER:
-            newMessage = @"Please Swipe Card";
-            break;
-        case EMVMessage_WELCOME:
-            newMessage = @"Welcome";
-            break;
-        default:
-            break;
-    }
-    
-    if (newMessage) {
-        self.swipeStatus.text = newMessage;
     }
 }
 

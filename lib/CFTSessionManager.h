@@ -14,7 +14,23 @@
  */
 #import <Foundation/Foundation.h>
 
+@protocol CFTSessionProtocol <NSObject>
+
+@optional
+
+/*
+ * Optional callback to reroute logging messages to a
+ * file instead of to the console.
+ *
+ * Added in 2.0.5
+ */
+- (void)logOutput:(NSString *)output;
+
+@end
+
 @interface CFTSessionManager : NSObject
+
+@property (nonatomic, weak) id <CFTSessionProtocol> delegate;
 
 /*
  * Accessor for the CardFlight singleton

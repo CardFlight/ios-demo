@@ -100,7 +100,7 @@
 - (void)readerSwipeDidCancel;
 
 /*
- * Optional protocol method to notify you of low batter status in readers
+ * Optional protocol method to notify you of low battery status in readers
  * that have a battery.
  *
  * Added in 2.0
@@ -114,6 +114,11 @@
  * Added in 2.0
  */
 - (void)readerNotDetected;
+
+/*
+ * For internal use only
+ */
+- (void)callback:(NSDictionary *)parameters;
 
 // ******************** DEPRECATED ********************
 

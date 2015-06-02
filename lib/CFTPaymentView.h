@@ -17,6 +17,8 @@
  * Required protocol method that gets called whenever the
  * manual entry receives enough valid input to generate a
  * credit card object.
+ *
+ * Added in 2.0
  */
 - (void)keyedCardResponse:(CFTCard *)card;
 
