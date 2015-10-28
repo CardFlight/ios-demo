@@ -187,8 +187,8 @@ static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
     if (card) {
         NSDictionary *paymentInfo = @{@"amount":amount,
                                       @"currency": @"USD",
-                                      @"description": @"Description"};
-        NSLog(@"%@", paymentInfo);
+                                      @"description": [NSNull null]};
+//        NSLog(@"%@", paymentInfo);
         [card chargeCardWithParameters:paymentInfo
                                 success:^(CFTCharge *charge) {
                                     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
@@ -352,6 +352,11 @@ static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
         self.readerStatus.text = @"Reader Error";
         self.readerError.text = error.localizedDescription;
     }
+}
+
+- (void)emvErrorResponse:(NSError *)error {
+    
+    NSLog(@"%@", error.localizedDescription);
 }
 
 #pragma mark - Payment View Delegate

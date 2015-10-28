@@ -6,7 +6,7 @@
  * be included and all supporting headers will be available in a
  * project.
  *
- * Copyright (c) 2014 CardFlight Inc. All rights reserved.
+ * Copyright (c) 2015 CardFlight Inc. All rights reserved.
  *****************************************************************
  */
 

@@ -1,10 +1,10 @@
-//
-//  CFTAttacheReader.h
-//  CardFlightLibrary
-//
-//  Created by Paul Tower on 6/10/14.
-//  Copyright (c) 2014 CardFlight Inc. All rights reserved.
-//
+/*
+ *****************************************************************
+ * CFTAttacheReader.h
+ *
+ * Copyright (c) 2015 CardFlight Inc. All rights reserved.
+ *****************************************************************
+ */
 
 #import <Foundation/Foundation.h>
 @class CFTCard;
@@ -13,8 +13,8 @@
 
 @required
 
-/**
- * Required protocol method that gets called when the hardware
+/*!
+ * @discussion Required protocol method that gets called when the hardware
  * reader has received a complete swipe. Returns a CFTCard object
  * with success and a NSError on failure.
  */
@@ -22,45 +22,45 @@
 
 @optional
 
-/**
- * Optional protocol method that gets called after the hardware
+/*!
+ * @discussion Optional protocol method that gets called after the hardware
  * reader is physically attached.
  */
 - (void)readerIsAttached;
 
-/**
- * Optional protocol method that gets called after a hardware
+/*!
+ * @discussion Optional protocol method that gets called after a hardware
  * reader begins the connection process.
  */
 - (void)readerIsConnecting;
 
-/**
- * Optional protocol method that gets called after an attempt is made
+/*!
+ * @discussion Optional protocol method that gets called after an attempt is made
  * to connect with the hardware reader. If isConnected is FALSE then
  * the NSError object will contain the description.
  */
 - (void)readerIsConnected:(BOOL)isConnected withError:(NSError *)error;
 
-/**
- * Optional protocol method that gets called in a non credit card is
+/*!
+ * @discussion Optional protocol method that gets called in a non credit card is
  * swiped. The raw data from swipe is passed without any processing.
  */
 - (void)readerGenericResponse:(NSString *)cardData;
 
-/**
- * Optional protocol method that gets called after the hardware reader
+/*!
+ * @discussion Optional protocol method that gets called after the hardware reader
  * is disconnected and physically detached.
  */
 - (void)readerIsDisconnected;
 
-/**
- * Optional protocol method that gets called after the serial number
+/*!
+ * @discussion Optional protocol method that gets called after the serial number
  * of the hardware reader has been retrieved.
  */
 - (void)readerSerialNumber:(NSString *)serialNumber;
 
-/**
- * Optional protocol method that gets called after the user cancels
+/*!
+ * @discussion Optional protocol method that gets called after the user cancels
  * a swipe.
  */
 - (void)readerSwipeDidCancel;
@@ -71,8 +71,8 @@
 
 @property (nonatomic, weak) id<CFTAttacheReaderDelegate> delegate;
 
-/**
- * Create a new CFTReader and have it attempt to connect to the
+/*!
+ * @discussion Create a new CFTReader and have it attempt to connect to the
  * hardware reader immediately.
  */
 - (id)initAndConnect;

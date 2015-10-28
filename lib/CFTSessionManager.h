@@ -1,6 +1,6 @@
 /*
  *****************************************************************
- * CardFlight.h
+ * CFTSessionManager.h
  *
  * A CardFlight singleton is created to maintain session-wide
  * settings and information.
@@ -9,7 +9,7 @@
  * related to the function that you want to perform. Only the
  * classes required need to be included in a file.
  *
- * Copyright (c) 2013 CardFlight Inc. All rights reserved.
+ * Copyright (c) 2015 CardFlight Inc. All rights reserved.
  *****************************************************************
  */
 #import <Foundation/Foundation.h>
@@ -18,10 +18,11 @@
 
 @optional
 
-/*
- * Optional callback to reroute logging messages to a
+/*!
+ * @brief Capture logging messages
+ * @param output NSString of log message
+ * @discussion Optional callback to reroute logging messages to a
  * file instead of to the console.
- *
  * Added in 2.0.5
  */
 - (void)logOutput:(NSString *)output;
@@ -29,65 +30,73 @@
 @end
 
 @interface CFTSessionManager : NSObject
-
+@property (nonatomic, readonly) BOOL isEMVMerchantAccount;
 @property (nonatomic, weak) id <CFTSessionProtocol> delegate;
 
-/*
- * Accessor for the CardFlight singleton
- *
+/*!
+ * @brief Accessor for the session manager singleton
+ * @discussion Access the session manager singleton
  * Added in 1.7
  */
 + (CFTSessionManager *)sharedInstance;
 
-/*
- * Convenience method to return the current version number of the SDK
- *
+/*!
+ * @brief Get current SDK version
+ * @return NSString of current SDK version
+ * @discussion Convenience method to return the current version number of the SDK.
  * Added in 1.0
  */
 - (NSString *)SDKVersion;
 
-/*
- * Convenience method to return the current API token
- *
+/*!
+ * @brief Get the current API token
+ * @return NSString of current API token
+ * @discussion Convenience method to return the current API token.
  * Added in 2.0
  */
 - (NSString *)apiToken;
 
-/*
- * Convenience method to return the current Account token
- *
+/*!
+ * @brief Get the current account token
+ * @return NSString of current account token
+ * @discussion Convenience method to return the current Account token.
  * Added in 2.0
  */
 - (NSString *)accountToken;
 
-/*
- * Sets the API account token for the entire session. This only
- * needs to be called once, most likely in applicationDidFinishLaunching
+/*!
+ * @brief Set the API and account tokens for the session
+ * @param cardFlightApiToken NSString of the API token
+ * @param cardFlightAccountToken NSString of the account token
+ * @discussion Sets the API account token for the entire session. This only
+ * needs to be called once, most likely in applicationDidFinishLaunching, but
+ * it can be called multiple times to use different credentials.
+ * Updated in 2.0
  */
 - (void)setApiToken:(NSString *)cardFlightApiToken
        accountToken:(NSString *)cardFlightAccountToken;
 
-/*
- * Pass YES to enable developer logging mode to the console.
- * This should always be set to NO for release
+/*!
+ * @brief Set logging mode of the SDK
+ * @param logging BOOL to turn on or off logging mode
+ * @discussion Pass YES to enable developer logging mode to the console.
+ * Added in 1.0
  */
 - (void)setLogging:(BOOL)logging;
 
 // ******************** DEPRECATED ********************
 
-/*
- * Convenience method to return the current API token
- *
- * THIS WILL BE REMOVED IN A LATER RELEASE
+/*!
+ * @discussion Convenience method to return the current API token.
  * Deprecated in 2.0, please use apiToken instead.
+ * @warning THIS WILL BE REMOVED IN THE NEXT RELEASE
  */
 - (NSString *)getApiToken __deprecated;
 
-/*
- * Convenience method to return the current Account token
- *
- * THIS WILL BE REMOVED IN A LATER RELEASE
+/*!
+ * @discussion Convenience method to return the current Account token.
  * Deprecated in 2.0, please use accountToken instead.
+ * @warning THIS WILL BE REMOVED IN THE NEXT RELEASE
  */
 - (NSString *)getAccountToken __deprecated;
 
