@@ -75,7 +75,6 @@
 		43AADCBC183EBC6400D5D725 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		43AADCBE183EBC6C00D5D725 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		43B7E79C1864E2BA008B0DFE /* CardFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardFlight.h; sourceTree = "<group>"; };
-		43B7E79D1864E2BA008B0DFE /* CFTAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTAccount.h; sourceTree = "<group>"; };
 		43B7E79E1864E2BA008B0DFE /* CFTAPIResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTAPIResource.h; sourceTree = "<group>"; };
 		43B7E79F1864E2BA008B0DFE /* CFTCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTCard.h; sourceTree = "<group>"; };
 		43B7E7A01864E2BA008B0DFE /* CFTCharge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFTCharge.h; sourceTree = "<group>"; };
@@ -219,7 +218,6 @@
 			children = (
 				4305CD021AA0BFA2009EC706 /* CFTEnum.h */,
 				43B7E79C1864E2BA008B0DFE /* CardFlight.h */,
-				43B7E79D1864E2BA008B0DFE /* CFTAccount.h */,
 				43B7E79E1864E2BA008B0DFE /* CFTAPIResource.h */,
 				43B7E79F1864E2BA008B0DFE /* CFTCard.h */,
 				43B7E7A01864E2BA008B0DFE /* CFTCharge.h */,
@@ -276,9 +274,12 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = CFT;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = CardFlight;
 				TargetAttributes = {
+					43AADC74183EBB2800D5D725 = {
+						DevelopmentTeam = U5YKNP8J62;
+					};
 					43AADC8F183EBB2800D5D725 = {
 						TestTargetID = 43AADC74183EBB2800D5D725;
 					};
@@ -393,6 +394,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -452,6 +454,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -466,6 +470,7 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cardflight.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -479,6 +484,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -493,6 +500,7 @@
 					"$(PROJECT_DIR)/lib",
 				);
 				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cardflight.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
@@ -515,6 +523,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "SDKSandboxTests/SDKSandboxTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cardflight.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -533,6 +542,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SDKSandbox/SDKSandbox-Prefix.pch";
 				INFOPLIST_FILE = "SDKSandboxTests/SDKSandboxTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cardflight.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

@@ -197,35 +197,6 @@
  */
 - (void)callback:(NSDictionary *)parameters;
 
-// ******************** DEPRECATED ********************
-
-/*!
- * @discussion Optional protocol method that gets called when a transaction has completed.
- * Returns a CFTCharge on success and a NSError on failure.
- *
- * THIS WILL BE REMOVED IN A LATER RELEASE
- * Deprecated in 3.0, please use emvTransactionResult instead
- */
-- (void)transactionResult:(CFTCharge *)charge withError:(NSError *)error __deprecated;
-
-/*!
- * @discussion Optional protocol method that gets called after the serial number
- * of the hardware reader has been retrieved.
- *
- * THIS WILL BE REMOVED IN THE NEXT RELEASE
- * Deprecated in 2.0.
- */
-- (void)readerSerialNumber:(NSString *)serialNumber __deprecated;
-
-/*!
- * @discussion Optional protocol method that gets called in a non credit card is
- * swiped. The raw data from swipe is passed without any processing.
- *
- * THIS WILL BE REMOVED IN THE NEXT RELEASE
- * Deprecated in 2.0.
- */
-- (void)readerGenericResponse:(NSString *)cardData __deprecated;
-
 @end
 
 @interface CFTReader : NSObject
@@ -284,6 +255,14 @@
  */
 - (CFTReaderState)readerState;
 
+
+/*!
+ * @brief Safely stop reader
+ * @discussion Stop reader action in safe manner and clear all delegates.
+ * Added in 3.1
+ */
+- (void)destroy;
+
 // **************** EMV RELATED METHODS ****************
 
 /*!
@@ -335,14 +314,18 @@
 /*!
  * @brief Attach a signature to an EMV transaction
  * @param signatureData NSData of a base64 encoded image
+ * @param success Success block called if transaction is uploaded
+ * @param failure Failure block called with NSError is transaction fails to upload
  * @discussion If the transaction requires a signatue as indicated in
  * emvTransactionResult this method is used to attach the signature.
- * Added in 3.0
+ * Updated in 3.2
  */
-- (void)emvTransactionSignature:(NSData *)signatureData;
+- (void)emvTransactionSignature:(NSData *)signatureData
+                        success:(void(^)(void))success
+                        failure:(void(^)(NSError *error))failure;
 
 /*!
- * @bried Get default text for an EMV message category
+ * @brief Get default text for an EMV message category
  * @param message CFTEMVMessage to get the default text for
  * @return English language string containing the default text
  * @discussion CFTEMVMessages are enumerations of a category of message types.
@@ -351,59 +334,5 @@
  * Added in 3.0
  */
 - (NSString *)defaultMessageForCFTEMVMessage:(CFTEMVMessage)message;
-
-// ******************** DEPRECATED ********************
-
-/*!
- * @discussion Set the hardware reader to begin waiting to receive a swipe or
- * starts an EMV transaction. Does NOT return a card object, the charge
- * is made immediately.
- *
- * Returns an error if an invalid charge dictionary is passed or amount is
- * not passed.
- *
- * chargeDictionary parameters:
- *      description - Optional - NSString of charge description
- *      customer_id - Optional - NSString of customer ID being charged
- *      currency - Optional - NSString of ISO 3166-1 numeric currency code,
- *                 ** 840 (USD) is the default and only currently supported currency **
- *      merchant_id - Optional - NSString of Braintree submerchant ID
- *                    ** Not currently supported for EMV, use for mag stripe only **
- *      service_fee - Optional - NSDecimalNumber containing the fee to charge
- *                    ** Not currently supported for EMV, use for mag stripe only **
- *
- * THIS WILL BE REMOVED IN A LATER RELEASE
- * Deprecated in 3.0
- */
-- (NSError *)beginTransactionWithAmount:(NSDecimalNumber *)amount
-                    andChargeDictionary:(NSDictionary *)chargeDictionary __deprecated;
-
-/*!
- * @discussion Optional method to set the duration before a swipe command will
- * timeout. Setting the duration to 0 will cause the swipe to never timeout.
- *
- * THIS WILL BE REMOVED IN THE NEXT RELEASE
- * Deprecated in 2.0, please use swipeHasTimeout instead.
- */
-- (void)swipeTimeoutDuration:(NSInteger)duration __deprecated;
-
-/*!
- * @discussion Manually cancel the swipe process before the timeout duration has
- * been reached.
- *
- * THIS WILL BE REMOVED IN THE NEXT RELEASE
- * Deprecated in 2.0, please use cancelTransaction instead.
- */
-- (void)cancelSwipeWithMessage:(NSString *)message __deprecated;
-
-/*!
- * @discussion Communicate with the hardware reader and retrieve the serial number.
- * The hardware reader must not be performing any other functions.
- * Returns YES if command is successfully started, NO otherwise.
- *
- * THIS WILL BE REMOVED IN THE NEXT RELEASE
- * Deprecated in 2.0, please use cancelSwipe instead.
- */
-- (BOOL)retrieveSerialNumber __deprecated;
 
 @end

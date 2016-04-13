@@ -68,13 +68,15 @@
  * @brief Set the API and account tokens for the session
  * @param cardFlightApiToken NSString of the API token
  * @param cardFlightAccountToken NSString of the account token
+ * @param completed Block called when the session manager is ready to process transactions
  * @discussion Sets the API account token for the entire session. This only
  * needs to be called once, most likely in applicationDidFinishLaunching, but
  * it can be called multiple times to use different credentials.
- * Updated in 2.0
+ * Added in 3.2
  */
 - (void)setApiToken:(NSString *)cardFlightApiToken
-       accountToken:(NSString *)cardFlightAccountToken;
+       accountToken:(NSString *)cardFlightAccountToken
+          completed:(void(^)(BOOL emvReady))completed;
 
 /*!
  * @brief Set logging mode of the SDK
@@ -87,17 +89,17 @@
 // ******************** DEPRECATED ********************
 
 /*!
- * @discussion Convenience method to return the current API token.
- * Deprecated in 2.0, please use apiToken instead.
- * @warning THIS WILL BE REMOVED IN THE NEXT RELEASE
+ * @brief Set the API and account tokens for the session
+ * @param cardFlightApiToken NSString of the API token
+ * @param cardFlightAccountToken NSString of the account token
+ * @discussion Sets the API account token for the entire session. This only
+ * needs to be called once, most likely in applicationDidFinishLaunching, but
+ * it can be called multiple times to use different credentials.
+ *
+ * THIS WILL BE REMOVED IN A FUTURE RELEASE
+ * Deprecated in 3.2
  */
-- (NSString *)getApiToken __deprecated;
-
-/*!
- * @discussion Convenience method to return the current Account token.
- * Deprecated in 2.0, please use accountToken instead.
- * @warning THIS WILL BE REMOVED IN THE NEXT RELEASE
- */
-- (NSString *)getAccountToken __deprecated;
+- (void)setApiToken:(NSString *)cardFlightApiToken
+       accountToken:(NSString *)cardFlightAccountToken __deprecated;
 
 @end

@@ -50,6 +50,8 @@ static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
     
     [super viewDidLoad];
     
+    [[NSUserDefaults standardUserDefaults] setObject:@"https://staging.api.getcardflight.com/" forKey:@"ROOT_API_URL"];
+    
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                 action:@selector(dismissKeyboard)];
     singleTap.numberOfTapsRequired = 1;
@@ -67,12 +69,13 @@ static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
     
     [[CFTSessionManager sharedInstance] setLogging:YES];
     [[CFTSessionManager sharedInstance] setApiToken:API_KEY
-                                       accountToken:ACCOUNT_TOKEN];
+                                       accountToken:ACCOUNT_TOKEN
+                                          completed:^(BOOL emvReady){}];
     
     self.reader = [[CFTReader alloc] initWithReader:0];
     self.reader.delegate = self;
     
-    self.paymentView = [[CFTPaymentView alloc] initWithFrame:CGRectZero];
+    self.paymentView = [[CFTPaymentView alloc] initWithFrame:CGRectZero enableZip:YES];
     self.paymentView.delegate = self;
     [self.paymentView useKeyboardAppearance:UIKeyboardAppearanceDark];
     self.paymentView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -313,7 +316,7 @@ static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
     if (card) {
         self.swipedCard = card;
         [self enableSwipeButtons:YES];
-        self.swipeStatus.text = [NSString stringWithFormat:@"**** **** **** %@", self.swipedCard.last4];
+        self.swipeStatus.text = [NSString stringWithFormat:@"%@******%@", self.swipedCard.first6, self.swipedCard.last4];
     } else {
         [self enableSwipeButtons:NO];
         self.swipeStatus.text = error.localizedDescription;

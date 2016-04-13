@@ -19,6 +19,7 @@
 
 @interface CFTCard : CFTAPIResource <NSCopying>
 
+@property (nonatomic, readonly) NSString *first6;
 @property (nonatomic, readonly) NSString *last4;
 @property (nonatomic, readonly) NSString *cardTypeString;
 @property (nonatomic, readonly) NSString *expirationMonth;
@@ -27,6 +28,28 @@
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) NSString *cardToken;
 @property (nonatomic, readonly) NSString *vaultID;
+
+/*!
+ * @brief Charge the card associated with a Vault ID
+ * @param vaultID NSString of the Vault ID to charge
+ * @param chargeDictionary NSDictionary containing charge details
+ * @param success Block containing CFTCharge, executed on success
+ * @param failure Block containing NSError, executed on failure
+ * @discussion Method to charge a card with the details in the chargeDictionary.
+ * chargeDictionary parameters:
+ *      amount - NSDecimalNumber containing amount to charge
+ *      callback_url - Optional - NSURL of callback URL to trigger
+ *      description - Optional - NSString of charge description
+ *      customer_id - Optional - NSString of customer ID being charged
+ *      currency - Optional - NSString of currency code, defaults to USD
+ *      merchant_id - Optional - NSString of Braintree submerchant ID
+ *      service_fee - Optional - NSDecimalNumber containing the fee to charge
+ * Added in 3.2
+ */
++ (void)chargeVaultID:(NSString *)vaultID
+       withParameters:(NSDictionary *)chargeDictionary
+              success:(void(^)(CFTCharge *charge))success
+              failure:(void(^)(NSError *error))failure;
 
 /*!
  * @brief Charge the card
