@@ -46,7 +46,8 @@ typedef NS_ENUM(NSUInteger, CFTEMVMessage) {
     EMVMessage_TRY_SWIPE_AGAIN,
     EMVMessage_USE_CHIP_READER,
     EMVMessage_USE_MAG_READER,
-    EMVMessage_WELCOME
+    EMVMessage_WELCOME,
+    EMVMessage_NO_MESSAGE
 };
 
 typedef NS_ENUM (NSUInteger, CFTCardType) {

@@ -234,7 +234,8 @@
  * @brief Set the reader to auto timeout after 20 seconds
  * @param hasTimeout BOOL to set timeout on or off
  * @discussion Optional method to set whether reader times out while waiting
- * for a swipe after 20 seconds. Default is YES.
+ * for a swipe after 20 seconds. Default is YES. Note: This method has
+ * no effect during an EMV transaction.
  * Added in 2.0
  */
 - (void)swipeHasTimeout:(BOOL)hasTimeout;

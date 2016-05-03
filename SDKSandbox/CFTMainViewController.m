@@ -351,6 +351,7 @@ static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
         self.startTransaction.enabled = YES;
         self.readerType.enabled = YES;
         self.readerError.text = @"";
+        [self.reader swipeHasTimeout:NO];
     } else {
         self.readerStatus.text = @"Reader Error";
         self.readerError.text = error.localizedDescription;
