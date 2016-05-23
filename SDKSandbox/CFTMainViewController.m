@@ -51,6 +51,7 @@ static NSString *ACCOUNT_TOKEN = @"PUT_YOUR_ACCOUNT_TOKEN_HERE";
     [super viewDidLoad];
     
     [[NSUserDefaults standardUserDefaults] setObject:@"https://staging.api.getcardflight.com/" forKey:@"ROOT_API_URL"];
+//    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"ROOT_API_URL"];
     
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                 action:@selector(dismissKeyboard)];

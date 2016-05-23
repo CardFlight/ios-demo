@@ -319,7 +319,7 @@
  * @param failure Failure block called with NSError is transaction fails to upload
  * @discussion If the transaction requires a signatue as indicated in
  * emvTransactionResult this method is used to attach the signature.
- * Updated in 3.2
+ * Updated in 3.2.1
  */
 - (void)emvTransactionSignature:(NSData *)signatureData
                         success:(void(^)(void))success
